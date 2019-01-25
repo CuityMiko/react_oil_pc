@@ -1,0 +1,50 @@
+.search-condition-container{
+
+  //自动循环后的多行条件之间的行间距
+  .row-spacing{
+    margin-bottom:16px;
+  }
+
+  .a-left{
+    margin-left:2px;
+  }
+
+  .col-btn{
+    //text-align:center;
+    text-align: right;
+  }
+
+  //清除ant-form-item默认的margin-bottom:24px，为了查询条件和按钮一行垂直居中对齐
+  .ant-form-item{
+    margin-bottom:0;
+  }
+
+  .ant-form-item {
+    margin-right: 0;
+    display: flex;
+    > .ant-form-item-label {
+      width: auto;
+      line-height: 32px;
+      padding-right: 8px;
+    }
+    .ant-form-item-control {
+      line-height: 32px;
+    }
+  }
+  .ant-form-item-control-wrapper {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .row-spacing{
+    margin-bottom:0;
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .row-spacing{
+    margin-bottom:0;
+  }
+}

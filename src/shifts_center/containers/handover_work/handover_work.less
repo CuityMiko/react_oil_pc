@@ -1,0 +1,49 @@
+@import "../../../base/style/variables";
+
+// 交班管理
+.management-container {
+  .title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: @text-font-size;
+    .switch {
+      margin: 0 16px;
+    }
+    .tips {
+      color: @primary-color;
+    }
+  }
+  .work-status {
+    font-size: @title-font-size;
+    color: @title-font-color;
+    font-weight: @title-font-weight;
+  }
+}
+
+// 交班记录时间样式
+.record-shift-content{
+  .ant-form-item-label{
+    width:19% !important;
+  }
+  .ant-form-item-control-wrapper{
+    width:81% !important;
+    .ant-calendar-picker{
+      width:100% !important;
+    }
+  }
+
+  .search-condition-container{
+    .row-spacing{
+      .ant-col-xs-24:first-child ,.ant-col-md-8:first-child ,.ant-col-lg-8:first-child{
+        width:40% !important;
+      }
+      .ant-col-xs-24:nth-child(2),.ant-col-md-8:nth-child(2) ,.ant-col-lg-8:nth-child(2){
+        width:30% !important;
+      }
+    }
+    .col-btn{
+      width:30%;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+@import "../../base/style/variables";
+.coupon-card-container{
+  cursor: pointer;
+  width: 100%;
+  .coupon-container{
+    width:100%;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border-top-left-radius: 4px;
+    .coupon-top{
+      text-align: center;
+      width:100%;
+      height:96px;
+      position: relative;
+      .put-in-channel{
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 3px 7px;
+        background: #fff;
+        border-radius: 0px 2px 0px 12px;
+        color: @primary-color;
+      }
+      .amount-style-container{
+        position: absolute;
+        left: 24px;
+        top: 38px;
+        .amount-icon{
+          font-size:18px;
+          font-weight:bolder;
+        }
+        .amount-number{
+          font-size: 32px;
+          font-weight:bolder;
+        }
+      }
+      .coupon-name{
+        width:100%;
+        height:100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        font-size: @title-font-size !important;
+        font-weight: @title-font-weight;
+        color:#fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .coupon-bottom{
+      padding:20px 22px;
+      width:100%;
+      border: 1px solid @border-color;
+      border-top:none;
+      background: #fff;
+      .bottom-left{
+        display: flex;
+        justify-content: center;
+        align-items:flex-end;
+        .left-line{
+          text-align: left;
+          cursor: pointer;
+          line-height:16px;
+          .coupon-rule-title{
+            font-size: @title-font-size !important;
+            font-weight: @title-font-weight;
+            color:@title-font-color;
+            line-height:16px;
+            white-space: nowrap;
+            &:before {
+              position: absolute;
+              left: -8px;
+              top: 0px;
+              content: counter(mycounter, disc) " ";
+              color: @title-font-color;
+            }
+          }
+
+          .coupon-rule-title-grey{
+            color:@text-font-color;
+            &:before {
+              color: @text-font-color;
+            }
+          }
+
+          .coupon-rule-time{
+            font-size: @text-font-size !important;
+            color:@text-font-color-secondary;
+            margin-bottom: 12px;
+            margin-top: 10px;
+            line-height:16px;
+          }
+          .coupon-rule-inventory{
+            font-size: @text-font-size !important;
+            color:@text-font-color;
+            line-height:16px;
+            .edit-icon{
+              margin-left:2px;
+            }
+          }
+        }
+        .right-line{
+          text-align: right;
+        }
+        .going-style{
+          .coupon-rule-title{
+            &:before {
+              color: @primary-color !important;
+            }
+          }
+          .coupon-rule-inventory{
+            color: @primary-color;
+          }
+        }
+      }
+
+    }
+  }
+
+  .ant-row:before, .ant-row:after{
+    content: none;
+  }
+  .coupon-bottom:before, .coupon-bottom:after{
+    content:"";
+    display: block;
+  }
+}
+.coupon-more-options{
+  .ant-dropdown-menu-item{
+    p{
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .coupon-card-container{
+    .coupon-container{
+      margin-right: 0;
+    }
+  }
+}

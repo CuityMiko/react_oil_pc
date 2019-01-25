@@ -1,0 +1,44 @@
+@import "../../../base/style/variables";
+@dataCardPrefixCls: wb-datacard;
+.@{dataCardPrefixCls} {
+    display: flex;
+    align-items: center;
+    &-imgsize {
+        width: 60px;
+        height: 60px;
+        margin-right:20px;
+    }
+}
+.data-card-container{
+    .show-space-between{
+        justify-content: space-between;
+    }
+    .show-center{
+        justify-content: center;
+    }
+    .align-right{
+        text-align: right;
+    }
+    .align-left{
+        text-align: left;
+    }
+    .align-center{
+        text-align: center;
+    }
+    .v-spacing{
+        margin-bottom:16px;
+    }
+    .desc-text{
+        font-size:@text-font-size;
+        color:@text-font-color-secondary;
+    }
+    .amount-count-style{
+        font-size: @title-font-size;
+        color:@title-font-color;
+        font-weight:bolder;
+    }
+}
+.data-card-mobile>:first-child{
+    margin-bottom:24px;
+}
+

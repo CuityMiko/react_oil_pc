@@ -1,0 +1,78 @@
+@import "../base/style/variables";
+
+.consumer-order-container {
+  .pay-status-icon {
+    display: flex;
+    align-items: center;
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: @primary-color;
+      margin-right: 6px;
+    }
+  }
+  .not-pay {
+    &:before {
+      background-color: @success;
+    }
+  }
+  .refund {
+    &:before {
+      background-color: @warn;
+    }
+  }
+  .close {
+    &:before {
+      background-color: @light-white;
+    }
+  }
+}
+
+// 消费订单详情：支付方式展现
+.pay-entry-display {
+  img {
+    margin-right: 6px;
+  }
+}
+
+// 消费订单详情：更改detail-show样式
+.consumer-order-detail-show-box {
+  .consumer-order-detail-show {
+    .panel-header-style {
+      border-bottom: none!important;
+      .panel-header {
+        font-size: 20px!important;
+      }
+    }
+  }
+}
+
+// 消费订单详情
+.consumer-order-detail-container {
+  .pay-status-box {
+    line-height: 24px;
+    color: #ffffff;
+    padding: 0 8px;
+    width: auto;
+    height: 24px;
+    background: @primary-color;
+    border-radius: 12px 0 12px 0;
+  }
+  .not-pay-box {
+    background: @success;
+  }
+  .refund-box {
+    background: @warn;
+  }
+  .close-box {
+    background: @light-black;
+  }
+}
+
+// table横向滚动条
+.scroll-table {
+  overflow-x: scroll;
+}

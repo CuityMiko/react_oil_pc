@@ -1,0 +1,60 @@
+@import "../../../../base/style/variables";
+
+.per-rise-minus-edit-form {
+  .ant-form-item-label{
+    text-align: left;
+  }
+  .ant-col-lg-22 {
+    .is-member {
+      border-right: 1px solid rgb(198, 198, 198);
+    }
+  }
+  .identity {
+    text-align: left;
+    margin-bottom: 24px;
+    font-size: @title-font-size;
+    .tip {
+      color: rgb(198, 198, 198);
+    }
+  }
+  .label {
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+  .list-content {
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+  .mb-0{
+    margin-bottom: 0;
+  }
+  .list {
+    position: relative;
+    padding-left: 14px;
+    text-align: left;
+    margin-left: 4px;
+    margin-bottom: 12px;
+    color: @text-font-color;
+    display: inline-block;
+    &:before {
+      position: absolute;
+      left: 0;
+      content: counter(mycounter, disc) " ";
+      color: #1890FF;
+    }
+  }
+  .input-width {
+    width: 120px;
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+  .unit{
+    text-align: center;
+  }
+  .range-picker{
+    width: 100%;
+  }
+}

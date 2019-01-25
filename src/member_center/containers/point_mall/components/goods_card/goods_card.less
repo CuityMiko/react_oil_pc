@@ -1,0 +1,83 @@
+.goods-card {
+  position: relative;
+  //width: 240px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  .goods-card-title {
+    position: relative;
+    padding-left: 20px;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.85);
+    &:before {
+      position: absolute;
+      left: 0;
+      content: counter(mycounter, disc) " ";
+      color: rgba(0,0,0, 0.65)
+    }
+  }
+  .goods-card-time-wrap {
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+  }
+  .goods-card-footer {
+    position: relative;
+    margin-top: 12px;
+    color: #808080;
+    font-size: 12px;
+    .goods-card-storages {
+      float: left;
+      .edit-icon {
+        //display: none;
+        svg {
+          width: 14px;
+          height: 14px;
+          margin-left: 8px;
+        }
+      }
+    }
+    .goods-card-options {
+      float: right;
+    }
+  }
+  .point {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    padding: 0 8px 0 6px;
+    height: 26px;
+    border-radius: 2px 0px 12px 0px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+    background: rgba(24, 144, 255, 1);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.starting {
+  .goods-card-title {
+    &:before {
+      position: absolute;
+      left: 0;
+      content: counter(mycounter, disc) " ";
+      color: #1890FF;
+    }
+  }
+  .goods-card-footer {
+    .goods-card-storages {
+      color: #1890FF;
+      //.edit-icon {
+      //  display: inline-block;
+      //}
+    }
+  }
+}
+
+.end{
+  .edit-icon{
+    display: none;
+  }
+}

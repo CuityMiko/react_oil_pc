@@ -1,0 +1,149 @@
+@import "../../../base/style/variables";
+.detail-content-container{
+    .content-header-page{
+        background: #fff;
+    }
+}
+.mbr-list-title {
+    font-size: @title-font-size !important;
+    font-weight: @title-font-weight;
+    color: @title-font-color;
+}
+
+.mbr-list-containers{
+    .content-header-page{
+        background: #fff;
+    }
+}
+
+.mbr-list-container{
+    background: #fff;
+    .import-export-container{
+        margin-bottom:16px;
+    }
+    .row-spacing{
+    }
+}
+
+.account-info-container, .point-info-container{
+    background: #fff;
+}
+
+.basic-info-container{
+    .details-content-container{
+        margin-left:-26px;
+        padding-bottom:0;
+    }
+}
+
+.account-info-container{
+    .ant-tabs-tab{
+        display: none;
+    }
+}
+// 导入页面样式
+.import-container{
+    .more-import-btn{
+        margin-right:10px;
+    }
+    .to-help-import{
+        cursor: pointer;
+        float: right;
+        .icon-container{
+            margin-right:5px;
+            color:@primary-color;
+            vertical-align: middle;
+        }
+    }
+    .table-container{
+        .ant-table-pagination.ant-pagination{
+            display:none;
+        }
+    }
+}
+// 导入弹出框样式
+.import-modal{
+    .ant-input-affix-wrapper .ant-input:not(:first-child){
+        padding-left:11px;
+    }
+    .ant-input-affix-wrapper .ant-input-prefix{
+        display:none;
+    }
+    .ant-form-item-control{
+        .ant-row{
+            .ant-btn{
+                margin-top:0 !important;
+            }
+        }
+    }
+    .ant-modal-body{
+        padding: 16px;
+        .merchant-verification-container{
+            .ant-row{
+                margin-bottom:0;
+                .ant-form-item-label{
+                    font-size:@text-font-size;
+                    color:@text-font-color;
+                }
+                .ant-form-item-control{
+                    font-size:@text-font-size;
+                    color:@text-font-color-secondary;
+                }
+            }
+        }
+    }
+
+    .tip-import{
+        color:red;
+        &:before{
+          content:'*';
+          vertical-align: middle;
+       }
+    }
+
+    .import-more-container{
+        .step-upload{
+            width: 60%;
+            margin: 0 auto;
+            .step1-upload, .step2-upload{
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 10px;
+            }
+            .step-text{
+                display: inline-block;
+                text-align: left;
+                vertical-align: top;
+            }
+        }
+        .upload-excel{
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+}
+
+// 导入帮助手册
+.import-help-container{
+    div{
+        p{
+            margin:16px 0;
+        }
+    }
+    .step-1-p{
+        margin-top:0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .basic-info-container{
+        .details-content-container{
+            margin-left:-14px;
+            padding-bottom:0;
+        }
+
+    }
+    .mobile-table{
+        overflow-x: scroll;
+    }
+}

@@ -1,0 +1,45 @@
+.online-verification {
+  .centerButton {
+    text-align: center;
+  }
+  .verification-bg {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.exchange-record {
+  .stauts-div {
+    position: relative;
+    padding-left: 20px;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      content: counter(mycounter, disc) " ";
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+  .is-used {
+    &:before {
+      color: #1890FF;
+    }
+  }
+  .goods-name-div {
+    img {
+      width: 31px;
+      height: 31px;
+      margin-right: 10px;
+    }
+  }
+
+  .ant-form-item-label{
+    width:30%;
+  }
+  .ant-form-item-control-wrapper{
+    width:70%;
+    .ant-calendar-picker{
+      width:100% !important;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@import "../../../base/style/variables";
+.pay-code-container{
+  background: #fff;
+  .page-num-content{
+    text-align: right;
+  }
+}
+
+.add-edit-code-modal{
+  .ant-modal-body{
+    padding-bottom: 0;
+  }
+  .ant-form-item-label{
+    label{
+      font-size:@text-font-size;
+      color:@text-font-color;
+      .optional-style{
+        color:@text-font-color-secondary;
+      }
+    }
+
+  }
+  .ant-form-item-control-wrapper{
+    .ant-form-item-control{
+      .ant-select{
+        color:@text-font-color-secondary;
+      }
+      .ant-input{
+        color:@text-font-color-secondary;
+      }
+      .ant-select{
+        width: 82%;
+      }
+      input{
+        width: 82%;
+      }
+      textarea{
+        width: 82%;
+        vertical-align: top;
+        line-height: normal;
+        padding-left: 5px;
+      }
+    }
+    .field-tip-align{
+      vertical-align: top;
+      line-height: normal;
+      padding-left: 5px;
+    }
+    span{
+      font-size:@text-font-size;
+      color:@text-font-color-secondary;
+    }
+    button{
+      span{
+        //font-size: @text-font-size !important;
+        //color: #fff !important;
+        //background: @primary-color !important;
+      }
+    }
+  }
+}

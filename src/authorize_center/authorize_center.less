@@ -1,0 +1,27 @@
+@import "../base/style/variables";
+.wxchat-auth-container{
+  background: #fff;
+  .center-text{
+    text-align: center;
+  }
+  .wx-title{
+    font-size: @title-font-size !important;
+    font-weight: @title-font-weight;
+    color: @title-font-color;
+  }
+  .wx-text{
+    font-size:@text-font-size !important;
+    color:@text-font-color !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wxchat-auth-container{
+    background: #fff;
+    .center-text{
+      .wx-chat-img{
+        width:100%;
+      }
+    }
+  }
+}

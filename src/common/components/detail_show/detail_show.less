@@ -1,0 +1,139 @@
+@import "../../../base/style/variables";
+.panel-container{
+  background: #fff;
+  padding:10px;
+}
+.details-content-container {
+  .panel-header-style {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 10px;
+    .panel-header {
+      font-size: @title-font-size !important;
+      color: @title-font-color;
+      font-weight: @title-font-weight;
+    }
+  }
+  .col-btn {
+    text-align: center;
+  }
+  .col-btn-1 {
+    text-align: right;
+  }
+  .col-btn-2 {
+    text-align: left;
+  }
+  .col-btn-title {
+    text-align: right;
+    padding-right:10px;
+  }
+
+  //自动循环后的行间距
+  .row-spacing {
+    margin-bottom: 16px;
+  }
+
+  .row-detail-l {
+    .key-line {
+      display: inline-block;
+      width: 25%;
+      text-align: left;
+      margin: 0 8px 0 0;
+      font-size: @text-font-size !important;
+      color: @text-font-color !important;
+      white-space: nowrap;
+      line-height: 20px;
+    }
+    .value-line {
+      display: inline-block;
+      text-align: left;
+      font-size: @text-font-size !important;
+      color: @text-font-color-secondary;
+      word-wrap: break-word;
+      line-height: 20px;
+      margin: 0;
+      .show-img {
+        width: 104px;
+        height: 104px;
+      }
+      .add-map {
+        width: 260px !important;
+        height: 260px !important;
+      }
+    }
+  }
+
+  .row-detail-v {
+    .key-line {
+      display: inline-block;
+      width: 29.16666667%;
+      text-align: right;
+      margin: 0 8px 0 0;
+      font-size: @text-font-size !important;
+      color: @text-font-color !important;
+      white-space: nowrap;
+      line-height: 20px;
+      vertical-align: top;
+    }
+    .value-line {
+      display: inline-block;
+      width: 41.66666667%;
+      text-align: left;
+      font-size: @text-font-size !important;
+      color: @text-font-color-secondary;
+      word-wrap: break-word;
+      line-height: 20px;
+      margin: 0;
+      vertical-align: top;
+      .show-img {
+        width: 104px;
+        height: 104px;
+      }
+      .add-map {
+        width: 260px !important;
+        height: 260px !important;
+      }
+    }
+
+  }
+  .row-detail-v-left {
+    text-align: left;
+    .key-line-left {
+      width: 20%;
+    }
+  }
+  .width-vertical-left {
+    .value-line {
+      width: 66%;
+      word-wrap: break-word;
+    }
+  }
+  .mobile-detail-style {
+    .row-detail-v-left {
+      .key-line-left {
+        width: 30%;
+      }
+    }
+
+  }
+
+}
+.no-data-detail{
+  text-align: center;
+}
+@media screen and (max-width: 480px) {
+  .details-content-container{
+    .row-spacing{
+       margin-bottom:0;
+     }
+  }
+
+}
+
+@media screen and (max-width: 576px) {
+  .details-content-container{
+    .row-spacing{
+      margin-bottom:0;
+    }
+  }
+
+}

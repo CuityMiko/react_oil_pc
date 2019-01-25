@@ -1,0 +1,62 @@
+@import "../../../../base/style/variables";
+
+.activity-card{
+  .ant-card-head {
+    background-color: #f8f8f8;
+    .status-content {
+      margin-left: 12px;
+      .status {
+        color: rgb(198, 198, 198);
+      }
+    }
+  }
+
+  .ant-card-extra {
+    padding: 0;
+  }
+
+  .label-title {
+    margin-bottom: 12px;
+    font-size: @title-font-size;
+  }
+
+  .time {
+    margin-bottom: 12px;
+  }
+
+  .identity {
+    margin-bottom: 12px;
+    font-size: @title-font-size;
+  }
+
+  .list {
+    position: relative;
+    padding-left: 14px;
+    margin-left: 4px;
+    margin-bottom: 12px;
+    color: @text-font-color;
+    &:before {
+      position: absolute;
+      left: 0;
+      content: counter(mycounter, disc) " ";
+      color: #1890FF;
+    }
+  }
+
+  .is-member {
+    border-right: 1px solid rgb(198, 198, 198);
+  }
+
+  .not-member {
+  }
+}
+
+.starting{
+  .ant-card-head{
+    .status-content{
+      .status{
+        color: #1890FF;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import '../../../../../base/style/variables.less';
+
+.store-rule-list-container {
+    background: #fff;
+    .title {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        font-weight: 600;
+        font-size: @text-font-size;
+        .switch {
+            margin: 0 15px;
+        }
+    }
+    .status-icon {
+        display: flex;
+        align-items: center;
+        &:before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: @primary-color;
+            margin-right: 6px;
+        }
+    }
+    .not {
+        &:before {
+            background-color: #c0c0c0;
+        }
+    }
+}
+
+.store-gift-modal{
+    .gift-type-content-store{
+        #storediscount{
+            display: inline-block;
+        }
+        .ant-radio-wrapper{
+            display: inline-block !important;
+            margin-right: 0px;
+            span.ant-radio + *{
+                padding-right: 0px;
+            }
+        }
+    }
+}

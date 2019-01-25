@@ -1,0 +1,98 @@
+@import "../../../../base/style/variables";
+
+.qr-code-show {
+  width: 100%;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border-top-left-radius: 4px;
+  border: 1px solid @border-color;
+  .code-top {
+    text-align: center;
+    width: 100%;
+    //height: 120px;
+    position: relative;
+    padding: 11px;
+    img{
+      width:100%;
+    }
+    .title-one {
+      font-size: @title-font-size;
+      line-height: 16px;
+      font-weight: @title-font-weight;
+      color: @title-font-color;
+      text-align: left;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      //  display: -webkit-box;
+      //-webkit-box-orient: vertical;
+      //  -webkit-line-clamp: 2;
+      overflow: hidden;
+      .title-one-prefix{
+        width: 4px;
+        height: 16px;
+        display: inline-block;
+        background: @primary-color;
+        margin-right: 4px;
+        position: relative;
+        top: 2px;
+      }
+    }
+
+    .title-two {
+      font-size: @text-font-size;
+      color: @text-font-color;
+      text-align: left;
+      margin-bottom: 4px;
+      margin-top: 6px;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      //  display: -webkit-box;
+      //-webkit-box-orient: vertical;
+      //  -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    .desc {
+      font-size: @text-font-size;
+      color: @text-font-color-secondary;
+      text-align: left;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    //  display: -webkit-box;
+    //-webkit-box-orient: vertical;
+    //  -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+  .code-bottom {
+    padding: 10px 0px;
+    width: 100%;
+    border-top: 1px solid @border-color;
+    background: ghostwhite;
+    //background: #f0f2f5;
+    .txt-style {
+      font-size: @text-font-size;
+      color: @text-font-color;
+      cursor: pointer;
+    }
+    .left-line {
+      border-right: 1px solid #d9d9d9;
+    }
+  }
+}
+
+/*  .ant-row:before, .ant-row:after{
+    content: none;
+  }
+  .code-bottom:before, .code-bottom:after{
+    content:"";
+    display: block;
+  }*/
+
+@media (max-width: 480px) {
+  .qr-code-show {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,570 @@
+@import "../../../base/style/variables";
+
+// 会员卡设置-编辑
+.base-edit {
+  margin-bottom: 40px;
+  .ant-form-item{
+    margin-bottom:16px;
+  }
+  .computer-preview{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .computer-set{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .mobile-preview{
+    display: none;
+  }
+  .mobile-set{
+    .ant-form-item-label{
+        text-align: left;
+        padding-left: 10px !important;
+    }
+    .ant-form-item-control-wrapper{
+      padding-left: 10px !important;
+    }
+    .row-detail-v-left{
+      .key-line-left{
+        width:30%;
+      }
+    }
+  }
+
+  .mbr-list-title{
+    font-size: @title-font-size !important;
+    font-weight: @title-font-weight;
+    color: @title-font-color;
+    margin-bottom:0;
+  }
+  .ant-card-head{
+    padding: 0 10px;
+    text-align: left;
+  }
+  .ant-card-head-title {
+    font-size: @title-font-size !important;
+    font-weight: @title-font-weight;
+    color: @title-font-color;
+  }
+  .content-header-page{
+    background: #fff;
+  }
+  .ant-card-body{
+    padding:0;
+  }
+  .exhibition {
+    margin: 0 auto;
+    margin-bottom: 16px;
+      .h5-base {
+        background: url("../../../member_center/assets/images/h5-base-bg.png") no-repeat;
+        background-size: 100% 100%;
+        height:616px;
+        border-top: none;
+        padding-top: 76px;
+        .h5-base-header{
+          //background:  url("../../../member_center/assets/images/h5-user-back.png") no-repeat center,
+          //          url("../../../member_center/assets/images/h5-preview.png")no-repeat center;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+          width:90%;
+          height:185px;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          border-radius:12px;
+          margin: 0 auto;
+          .merchant-container{
+            text-align: left;
+            padding-top: 22px;
+            padding-left: 22px;
+            .logo-show-container{
+              width:34px;
+              height:34px;
+              display: inline-block;
+              vertical-align: middle;
+              border: 3px solid white;
+              background: #D8D8D8;
+              -webkit-border-radius:50% ;
+              -moz-border-radius:50% ;
+              border-radius:50% ;
+              margin-right:14px;
+              .logo-show{
+                width:100%;
+                height:100%;
+                -webkit-border-radius:50% ;
+                -moz-border-radius:50% ;
+                border-radius:50% ;
+              }
+            }
+            .merchant-name{
+              display: inline-block;
+              vertical-align: middle;
+              font-size:14px;
+              font-family:PingFangSC-Medium;
+              font-weight:500;
+              color:rgba(255,255,255,1);
+              line-height:20px;
+            }
+          }
+        }
+
+        .user-img-shadow{
+          box-shadow: 0 6px 14px rgba(128,128,28,0.25);
+        }
+        .default-img-shadow{
+          box-shadow: 0 6px 14px rgba(255,84,76,0.25);
+        }
+      }
+  }
+
+  .row-spacing{
+    margin-bottom:0;
+    &:first-child{
+    }
+    .row-col-container{
+      .label-left{
+        text-align: right;
+      }
+      .edit-right{
+        text-align: left;
+        .show-img{
+          width:104px;
+          height:104px;
+        }
+        .mbr-card-gift-score{
+
+        }
+        .score-span{
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+
+  .mbr-btn-container{
+    height: 56px;
+    line-height: 56px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    margin-left: 200px;
+    .btn-fixed{
+      margin-left: -200px;
+    }
+  }
+  .mbr-btn-container-collapse{
+    margin-left:80px;
+    .btn-fixed{
+      margin-left: -80px;
+    }
+  }
+
+  .ant-form-item-label{
+    text-align: right;
+    margin-right:20px;
+    label{
+      font-size:@text-font-size !important;
+      color:@text-font-color !important;
+      .optional-style{
+        color:@text-font-color-secondary !important;
+      }
+    }
+
+  }
+  .ant-form-item-control-wrapper{
+    .ant-form-item-control{
+      .field-width-limit{
+        width: 83%;
+      }
+      .field-tip-align{
+        vertical-align: top;
+        line-height: normal;
+        padding-left: 5px;
+      }
+    }
+    span{
+      font-size:@text-font-size !important;
+      color:@text-font-color-secondary;
+    }
+    button{
+      span{
+        font-size: @text-font-size !important;
+        color: #fff !important;
+      }
+    }
+  }
+  .ant-form-item-control-wrapper{
+    text-align: left;
+  }
+
+  .length-limit{
+    //display: inline-block;
+    //position: absolute;
+    //right: 12%;
+    //top: 0;
+  }
+  .length-limit-knows{
+    //position: absolute;
+    //right: 13%;
+    //top: 0;
+  }
+  .mbr-card-gift-score{
+    //width: 30%;
+  }
+  .score-span{
+    padding-left: 8px;
+  }
+
+  .score-form-item{
+    width: 20%;
+    margin-bottom: 0;
+    display: inline-block;
+    line-height: 39.9999px;
+    .ant-form-item-control-wrapper{
+      width:100%;
+    }
+
+  }
+  .ant-checkbox-group{
+    line-height: 39.9999px;
+  }
+  .upload-img-container{
+    margin-bottom:0;
+    .ant-upload-select-picture-card{
+      margin-bottom:0;
+      .ant-upload{
+        img{
+          width:104px;
+          height:104px;
+        }
+      }
+    }
+  }
+  .upload-img-container-logo{
+    .gas-logo-show{
+       width:104px;
+       height:104px;
+      margin-right:4px;
+    }
+    .ant-upload-select-picture-card{
+      margin-bottom:0;
+      .ant-upload{
+        img{
+          width:104px;
+          height:104px;
+        }
+      }
+    }
+  }
+
+  .inline-feedback-style{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -71px;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -71px;
+    }
+  }
+  .inline-feedback-style-knows{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -64px;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -64px;
+    }
+  }
+
+  .inline-feedback-pri-style{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -80px;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -80px;
+    }
+  }
+
+  .inline-feedback-pri-style-99{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -87px !important;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -87px !important;
+    }
+  }
+
+  .inline-feedback-pri-style-999{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -95px !important;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -95px !important;
+    }
+  }
+
+  .inline-feedback-style-knows-style{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -72px;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -72px;
+    }
+  }
+
+  .inline-feedback-style-knows-style-99{
+    .has-success.has-feedback .ant-form-item-children-icon{
+      position: relative;
+      left: -78px !important;
+    }
+    .has-error.has-feedback .ant-form-item-children-icon {
+      position: relative;
+      left: -78px !important;
+    }
+  }
+
+}
+.base-detail{
+  .detail-common-form-item{
+    //margin-bottom: 0px;
+    .ant-form-item-label{
+      line-height: 18px;
+      //height: 18px;
+    }
+    .ant-form-item-control{
+      line-height: 18px;
+      //height: 18px;
+      .ant-form-item-children{
+        span{
+
+        }
+      }
+    }
+  }
+  .panel-container{
+    .row-spacing{
+      margin-bottom:16px;
+    }
+  }
+  .panel-container{
+    padding:10px 0 0 0;
+    .panel-header-style{
+      padding-left:32px;
+    }
+  }
+  .exhibition{
+    .ant-card-head-wrapper{
+      height:57px;
+    }
+  }
+  .value-line-gift-coupon{
+    color:@primary-color !important;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .key-line{
+    margin: 0 !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  .value-line{
+    width:70%;
+    word-wrap: break-word;
+  }
+
+  .detail-get-card{
+    .details-content-container{
+      height:200px;
+    }
+  }
+
+}
+.H5-container{
+  .h5-link-container{
+    text-align: center;
+    .qrcode-container{
+      text-align: center;
+      img{
+        width: 200px;
+        height:200px;
+      }
+    }
+    .down-load-qrcode{
+    }
+    .copy-content{
+      margin: 10px 0;
+    }
+
+    .ant-tabs-ink-bar{
+      width:0 !important;
+    }
+    .ant-tabs-nav .ant-tabs-tab{
+      margin: 0;
+      border: 1px solid #d9d9d9;
+      padding:10px 30px;
+    }
+    .ant-tabs-nav .ant-tabs-tab-active {
+      color: #1890ff;
+      border: 1px solid #1890ff;
+    }
+    .ant-tabs-bar{
+      border:none;
+    }
+    .ant-tabs-ink-bar{
+      position: static;
+    }
+
+    //.ant-tabs-nav .ant-tabs-tab
+
+  }
+  .ant-modal-body{
+
+  }
+
+
+}
+
+// 添加卡券模态框样式-需加
+.add-coupon-modal{
+  .ant-modal{
+    width:800px !important;
+    .ant-modal-content{
+      background: #f0f2f5;
+      .ant-modal-body{
+        padding: 16px;
+        .add-coupon-container{
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .base-edit{
+    .length-limit{
+      right: 8%;
+    }
+    .length-limit-knows{
+      right: 9%;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .base-edit{
+    .length-limit{
+      right: 3%;
+    }
+    .length-limit-knows{
+      right: 5%;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .base-edit {
+    .row-spacing {
+      margin-bottom:0;
+      .row-col-container {
+        .label-left {
+          text-align: left;
+        }
+      }
+    }
+
+    .mbr-btn-container{
+      height: 56px;
+      line-height: 56px;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      margin-left:0;
+    }
+
+    .length-limit{
+      position: absolute;
+      right: 2%;
+      top: 20%;
+    }
+    .length-limit-knows{
+      position: absolute;
+      right: 4%;
+      top: 20%;
+    }
+
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .base-edit {
+    .row-spacing {
+      margin-bottom:0;
+      .row-col-container {
+        .label-left {
+          text-align: left;
+        }
+      }
+    }
+
+    .mbr-btn-container{
+      height: 56px;
+      line-height: 56px;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      margin-left:0;
+    }
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .base-edit{
+    .common-mbr-preview{
+      width:100% !important;
+    }
+    .common-mbr-set{
+      width:100% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .base-edit{
+    .common-mbr-preview{
+      width:50% !important;
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+    .common-mbr-set{
+      width:100% !important;
+    }
+  }
+}
+
+.user-list ul::-webkit-scrollbar{
+  width:0px;
+  opacity:0;
+  -webkit-overflow-scrolling: touch;
+}
+
+::-webkit-scrollbar { width: 0px;}

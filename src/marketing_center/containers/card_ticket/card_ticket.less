@@ -1,0 +1,88 @@
+@import '../../../base/style/variables';
+// 卡券列表
+.coupon-list-container {
+  //background: #fff;
+  .coupon-list-search{
+    background: #fff;
+  }
+  .coupon-list-content{
+
+  }
+  .list-page-content{
+    .page-num-content{
+      text-align: right;
+    }
+  }
+
+  .no-data-detail{
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+  }
+
+}
+// 推广
+.expand-container{
+  .link-container{
+    text-align: center;
+    .qrcode-container{
+      text-align: center;
+      img{
+        width: 200px;
+        height:200px;
+      }
+    }
+  }
+}
+
+// 卡券营销分析
+.coupon-analysis{
+  background: #fff;
+  .coupon-desc{
+    padding: 5px 16px;
+    border: 1px solid @border-color;
+    //background: #E6F7FF;
+    .name-coupon{
+      font-size:@text-font-size;
+      color:@text-font-color-secondary;
+    }
+    .name-coupon-desc{
+      font-size:@text-font-size;
+      color:@text-font-color;
+    }
+    .anticon-exclamation-circle{
+      color:@primary-color;
+      margin-right:10px;
+    }
+  }
+  .set-tip{
+    padding: 5px 16px;
+    border: 1px solid @primary-color;
+    background: #E6F7FF;
+    .anticon-exclamation-circle{
+      color:@primary-color;
+      margin-right:10px;
+    }
+  }
+  .chart-content{
+    //border:1px solid @border-color;
+    height:400px;
+  }
+  .tables-content{
+    //border:1px solid red;
+    height:400px;
+    .tables{
+      height:50%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .coupon-list-container{
+    .list-page-content{
+      .coupon-card-content{
+        text-align: center;
+      }
+    }
+  }
+}

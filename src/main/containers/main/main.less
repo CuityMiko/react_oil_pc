@@ -1,0 +1,204 @@
+@import "../../../base/style/variables";
+
+.main-content-container {
+  .main-top-container {
+    .main-data-content {
+      background: #fff;
+      .ant-card{
+        .ant-card-body{
+          padding:15px 24px 0 24px;
+        }
+      }
+      .btn-container-main{
+        height:21px;
+        line-height: 21px;
+      }
+      .v-spacing{
+        margin-bottom:14px;
+      }
+      .data-desc {
+        font-size: @title-font-size;
+        line-height: 16px;
+        font-weight: @title-font-weight;
+        color: @title-font-color;
+        padding-left: 16px;
+      }
+      .amount-style {
+        font-size: @title-font-size;
+        line-height: 16px;
+        font-weight: @title-font-weight;
+        color: @title-font-color;
+      }
+      .date-select {
+        cursor: pointer;
+        text-align:center;
+      }
+      .date-select:hover {
+        color: @primary-color;
+      }
+      .date-select:active {
+        color: @primary-color;
+      }
+      .card-data-content {
+        border-right: 1px solid @border-color;
+      }
+
+      .card-data-content-parent .card-data-content-p:last-child {
+        .card-data-content {
+          border-right: none;
+        }
+      }
+      .ant-tabs {
+        display: none;
+      }
+      .ant-tabs-tab {
+        display: none;
+      }
+      .ant-tabs-bar {
+        border-bottom: none;
+      }
+
+      .ant-radio-group {
+        height: 22px;
+        line-height: 22px;
+        .date-select {
+          .ant-radio-button-wrapper {
+            //height: 22px;
+            height:auto;
+            line-height: 22px;
+            background: none;
+          }
+          .ant-radio-button-wrapper-checked {
+            color:#fff;
+            background: @primary-color;
+          }
+
+          .ant-radio-button-wrapper:first-child {
+            border-left: none;
+          }
+
+          .ant-radio-button-wrapper{
+            border:none;
+          }
+
+        }
+
+      }
+
+      .data-card-mobile>:first-child{
+        margin-bottom:0px;
+      }
+
+    }
+    .main-nav-content {
+      background: #fff;
+      height: 135px;
+      .data-desc {
+        font-size: @title-font-size;
+        line-height: 16px;
+        font-weight: @title-font-weight;
+        color: @title-font-color;
+        border-bottom: 1px solid @border-color;
+        padding: 16px 0 16px 16px;
+      }
+      .des-item {
+        line-height: 14px;
+        color: @primary-color;
+      }
+    }
+  }
+  .chart-content-container{
+    height:400px;
+    .chart-content{
+      height:400px;
+      .ant-card{
+        height:400px;
+      }
+    }
+  }
+}
+
+.main-content-container-computer{
+
+}
+.main-content-container-mobile{
+  .main-top-container {
+    .main-data-content {
+      .v-spacing {
+        margin-bottom: 14px;
+      }
+      .btn-container-main{
+        height:30px;
+        line-height: 30px;
+      }
+    }
+    .card-data-content-parent{
+      .card-data-content {
+        border-right:none;
+      }
+    }
+    .ant-radio-group {
+      margin-top:0px !important;
+    }
+  }
+
+  .chart-content-container{
+      height:820px;
+  }
+
+  @media screen and (max-width: 360px) {
+    .data-card-container{
+      margin-top:20px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .main-content-container {
+    .main-top-container {
+      .main-data-content {
+        .v-spacing {
+          margin-bottom: 14px !important;
+        }
+      }
+      .ant-radio-group {
+        margin-top:16px;
+      }
+      .card-data-content-parent{
+        .card-data-content {
+          border-right:none;
+        }
+      }
+
+
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .main-content-container {
+      .chart-content-container{
+        .chart-content{
+          margin-bottom:16px;
+        }
+      }
+  }
+}
+@media screen and (max-width: 375px) {
+  .main-content-container {
+    .chart-content-container{
+     height:auto;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .main-content-container {
+    .main-top-container {
+      .main-data-content{
+        .data-card-container{
+          margin-top:16px;
+        }
+      }
+    }
+  }
+}
