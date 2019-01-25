@@ -184,6 +184,8 @@ class ConsumerOrders extends Component {
                             return <div className="pay-status-icon not-pay">待支付</div>;
                         case 1:
                             return <div className="pay-status-icon">支付成功</div>;
+                        case 2:
+                            return <div className="pay-status-icon not-pay">支付中</div>;
                         case 3:
                             return <div className="pay-status-icon refund">部分退款</div>;
                         case 4:
@@ -238,6 +240,7 @@ class ConsumerOrders extends Component {
                                         <Option value={null}>全部</Option>
                                         <Option value={1}>待支付</Option>
                                         <Option value={2}>支付成功</Option>
+                                        <Option value={4}>支付中</Option>
                                         <Option value={8}>部分退款</Option>
                                         <Option value={16}>全额退款</Option>
                                         <Option value={32}>已关闭</Option>

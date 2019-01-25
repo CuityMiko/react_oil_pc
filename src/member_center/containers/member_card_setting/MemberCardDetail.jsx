@@ -120,6 +120,33 @@ class MemberCardDetail extends Component {
         });
     };
 
+    renderGift() {
+        let detailDatas = this.state.detailData;
+        if(detailDatas.giftScore && detailDatas.giftCouponNumber){
+            return (
+                <span>
+                    <span className="style-gift">{detailDatas.giftScore+'积分,'}</span>
+                    <span className="style-gift" onClick={this.detailCoupon}>{detailDatas.giftCouponName}</span>
+                </span>
+            )
+        }
+        if(detailDatas.giftScore && !detailDatas.giftCouponNumber){
+            return (
+                <span className="style-gift">{detailDatas.giftScore+'积分'}</span>
+            )
+        }
+        if(!detailDatas.giftScore && detailDatas.giftCouponNumber){
+            return (
+                <span className="style-gift" onClick={this.detailCoupon}>{detailDatas.giftCouponName}</span>
+            )
+        }
+        if(!detailDatas.giftScore && !detailDatas.giftCouponNumber){
+            return (
+                <span className="style-gift">暂无赠送</span>
+            )
+        }
+    }
+
     render() {
         // 手机端还是电脑端
         const {responsive,LoginUserInfo} = this.props;
@@ -273,10 +300,34 @@ class MemberCardDetail extends Component {
                             </Row>
                         </Panel>
                         <WhiteSpace size="v-lg" />
-                        <div className="detail-get-card">
+                       {/* <div className="detail-get-card">
                             <DetailShowComplex labelClick={this.detailCoupon} headerHave={true} footerHave={false} titleName="会员卡领卡设置" data ={this.state.dataMbrCardGet} direction="vertical" showPosition="showLeft">
                             </DetailShowComplex>
-                        </div>
+                        </div>*/}
+
+                        <Panel panelHeader={true} panelFooter={false} title="会员卡领卡设置">
+                            <WhiteSpace />
+                            <Row gutter={{ xs: 8, md: 24, lg: 32 }}  type="flex" align="middle" className="row-spacing">
+                                <Col md={24} xs={24} type="flex" align="middle" className="row-col-container">
+                                    <FormItem {...formItemLayout} label='领取方式' className="detail-common-form-item">
+                                        {getFieldDecorator('receiveWay')(
+                                            <span>免费激活领取</span>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row gutter={{ xs: 8, md: 24, lg: 32 }} type="flex" align="middle" className="row-spacing">
+                                <Col md={24} xs={24} type="flex" align="middle" className="row-col-container">
+                                    <FormItem {...formItemLayout} label='领取赠送' className="detail-common-form-item">
+                                        {getFieldDecorator('gifts',{
+                                        })(
+                                            <span>{this.renderGift()}</span>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                        </Panel>
+
                     </Col>
                 </Row>
             </div>

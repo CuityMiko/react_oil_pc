@@ -259,24 +259,6 @@ class Home extends React.Component {
                                     }
                                     <DataCard data={dataTotal} colNum={3} />
                                 </Panel>
-                               {/* <Row>
-                                    <Col md={24} lg={16} xs={24} className="data-desc">数据概览</Col>
-                                    <Col md={24} lg={8} xs={24}>
-                                        <Row gutter={16}>
-                                        <Radio.Group onChange={this.handleModeChange} value={keyActive} style={{}}>
-                                            <Col md={6} lg={6} xs={6} className="date-select"><Radio.Button value="1">今日</Radio.Button></Col>
-                                            <Col md={6} lg={6} xs={6} className="date-select"><Radio.Button value="2">昨日</Radio.Button></Col>
-                                            <Col md={6} lg={6} xs={6} className="date-select"><Radio.Button value="3">本月</Radio.Button></Col>
-                                            <Col md={6} lg={6} xs={6} className="date-select"><Radio.Button value="4">上月</Radio.Button></Col>
-                                        </Radio.Group>
-                                        <Tabs activeKey={keyActive}>
-                                        </Tabs>
-                                        </Row>
-                                    </Col>
-                                </Row>*/}
-                                {/*<WhiteSpace size="v-lg" />*/}
-                                {/*<DataCard data={dataTotal} colNum={3} />*/}
-                            {/*</WingBlank>*/}
                         </div>
                     </Col>
                     <Col md={24} lg={5} xs={24}>

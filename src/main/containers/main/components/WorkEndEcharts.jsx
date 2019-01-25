@@ -22,6 +22,9 @@ class WorkEndEcharts extends React.Component {
     componentWillMount() {
         const {data} = this.props;
         const option = {
+            grid:{
+              left:'50'
+            },
             title: {
                 left: '50%',
                 show: false,
@@ -86,6 +89,19 @@ class WorkEndEcharts extends React.Component {
                     textStyle: {
                         fontSize: 14,
                         color:'rgba(0, 0, 0, 0.65)'
+                    },
+                    formatter:function(value,index){
+                        value = value.toString();
+                        value = value.replace(/,/g, "");
+                        value = Number(value);
+                        if(value>=1000 && value<10000){
+                            value = value /1000 +'千';
+                        }else if(value>=10000 && value<100000){
+                            value = value /10000 +'万';
+                        }else if(value > 100000){
+                            value = value / 100000 +'千万';
+                        }
+                        return value;
                     }
                 }
             },

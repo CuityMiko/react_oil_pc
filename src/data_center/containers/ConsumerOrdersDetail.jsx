@@ -172,6 +172,8 @@ class ConsumerOrdersDetail extends Component {
                 return <div className="pay-status-box not-pay-box">待支付</div>;
             case 1:
                 return <div className="pay-status-box">支付成功</div>;
+            case 2:
+                return <div className="pay-status-box not-pay-box">支付中</div>;
             case 3:
                 return <div className="pay-status-box refund-box">部分退款</div>;
             case 4:
