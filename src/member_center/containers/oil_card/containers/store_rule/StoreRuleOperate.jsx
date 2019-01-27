@@ -151,7 +151,7 @@ class StoreRuleOperate extends React.Component {
                             <div>
                                 {getFieldDecorator('storeaccount', {
                                     rules: [{
-                                        required: true, message: '请输入充值金额!', whitespace: true
+                                        required: true, message: '请输入充值金额!'
                                     }],
                                     initialValue: storerule && storerule.storeaccount ? storerule.storeaccount.toString() : ''
                                 })(

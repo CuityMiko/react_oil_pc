@@ -74,6 +74,8 @@ class MemberCardSetting extends Component {
         // 详情接口
         const {LoginUserInfo} = this.props;
         MemberCardService.detailMbrCard().then((dataMbrCard)=>{
+            dataMbrCard.originData.cardUseNotice = dataMbrCard.originData.cardUseNotice.replace(/<br\/>/g, '\n');
+            dataMbrCard.originData.cardPrivilegeExplain = dataMbrCard.originData.cardPrivilegeExplain.replace(/<br\/>/g, '\n');
             // 如果是详情页面跳到编辑页的就不做判断跳转
             if(this.props.params.pageIndex != 1){
                 // 判断是否编辑过

@@ -283,7 +283,7 @@ class MemberCardDetail extends Component {
                                 <Col md={24} xs={24} type="flex" align="middle" className="row-col-container">
                                     <FormItem {...formItemLayout} label="会员特权说明:" className="detail-common-form-item">
                                         {getFieldDecorator('mbrPrivilege')(
-                                            <label>{detailDatas.cardPrivilegeExplain ? detailDatas.cardPrivilegeExplain : '--'}</label>
+                                            <label dangerouslySetInnerHTML={{__html: detailDatas.cardPrivilegeExplain ? detailDatas.cardPrivilegeExplain : '--'}}></label>
                                         )}
                                     </FormItem>
                                 </Col>
@@ -293,7 +293,7 @@ class MemberCardDetail extends Component {
                                 <Col md={24} xs={24} type="flex" align="middle" className="row-col-container">
                                     <FormItem {...formItemLayout} label="使用须知:" className="detail-common-form-item">
                                         {getFieldDecorator('mbrUseInstructions')(
-                                            <span>{detailDatas.cardUseNotice ? detailDatas.cardUseNotice : '--'}</span>
+                                            <span dangerouslySetInnerHTML={{__html: detailDatas.cardUseNotice?detailDatas.cardUseNotice:'--'}}></span>
                                         )}
                                     </FormItem>
                                 </Col>

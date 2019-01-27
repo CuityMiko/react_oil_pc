@@ -42,6 +42,7 @@ class BannerCenter extends Component {
     componentDidMount() {
         // 详情接口
           BannerCenterService.noticeDetail().then(res => {
+              res.content = res.content.replace(/<br\/>/g, '\n');
               this.setState({
                   detailData:res
               });

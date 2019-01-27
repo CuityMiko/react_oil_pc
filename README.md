@@ -6,7 +6,7 @@ oilStation-manage-frontend system solution
 ### 依赖模块
 <span style="color: rgb(184,49,47);">项目是用create-react-app创建的，主要还是列出新加的功能依赖包</span>
 
-<span style="color: rgb(184,49,47);">点击名称可跳转相关网站😄😄</span>
+<span style="color: rgb(184,49,47);">点击名称可跳转相关网站😄</span>
 
 - [react](https://facebook.github.io/react/)(基础开发mvc框架)
 - [react-router](https://react-guide.github.io/react-router-cn/)(react路由)

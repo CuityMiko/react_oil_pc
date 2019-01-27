@@ -39,6 +39,7 @@ class BannerCenterDetail extends Component {
     componentDidMount() {
         // 详情接口
         BannerCenterService.noticeDetail().then(res => {
+            res.content = res.content.replace(/\n/g, '<br/>');
             this.setState({
                 detailData:res
             });
@@ -66,6 +67,7 @@ class BannerCenterDetail extends Component {
          message.success('提前结束成功');
       // 提前结束后调详情接口刷新页面，对应状态和按钮文案改变
           BannerCenterService.noticeDetail().then(res => {
+              res.content = res.content.replace(/\n/g, '<br/>');
                this.setState({
                  detailData:res
               });
@@ -177,7 +179,7 @@ render() {
                                               <FormItem {...formItemLayout} label="内容:">
                                                   {getFieldDecorator('contentText', {
                                                   })(
-                                                      <div>{detailData.content?detailData.content:'--'}</div>
+                                                      <div dangerouslySetInnerHTML={{__html: detailData.content?detailData.content:'--'}}></div>
                                                   )}
                                               </FormItem>
                                           </div>
@@ -238,7 +240,7 @@ render() {
                                               <FormItem {...formItemLayout} label="内容:">
                                                   {getFieldDecorator('contentText', {
                                                   })(
-                                                      <div>{detailData.content?detailData.content:'--'}</div>
+                                                      <div dangerouslySetInnerHTML={{__html: detailData.content?detailData.content:'--'}}></div>
                                                   )}
                                               </FormItem>
                                           </div>

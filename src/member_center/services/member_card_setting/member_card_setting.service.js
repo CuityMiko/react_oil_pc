@@ -51,6 +51,8 @@ const detailMbrCard = function () {
                 cardCoverChoice:res.cardCoverChoice,
                 originData:res
             };
+            res.cardUseNotice = res.cardUseNotice.replace(/\n/g, '<br/>');
+            res.cardPrivilegeExplain = res.cardPrivilegeExplain.replace(/\n/g, '<br/>');
             dataMbrCard.dataMbrCardBasic.set('油站LOGO',res.gasLogo?res.gasLogo:'--')
                 .set('会员卡封面',res.cardCoverType==1?res.cardCoverChoice!=null?
                     res.cardCoverChoice:'--':'http://chuangjiangx-files.oss-cn-hangzhou.aliyuncs.com/image/729DA9BC-A1F5-4907-B646-06AF2E1FCF29.png')
