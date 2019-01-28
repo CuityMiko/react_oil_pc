@@ -480,7 +480,7 @@ class StoreRuleList extends React.Component {
                     }
                     <Table columns={columns} dataSource={ruleList} locale={{emptyText: '暂无数据'}} 
                         loading={tableLoading}
-                        scroll={{x: 1100}}
+                        scroll={{x: 1024}}
                         pagination={{
                             current: pageNO, 
                             hideOnSinglePage: true, 

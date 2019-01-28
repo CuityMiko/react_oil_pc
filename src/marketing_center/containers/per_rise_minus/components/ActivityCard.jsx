@@ -124,11 +124,11 @@ class GoodesCard extends React.Component {
             for (let item of details) {
                 isMemberList.push(
                     <div
-                        className="list" key={item.skuName}>{item.skuName + '#（单价：' + item.originalPrice + '/升）立减￥' + item.mbrSubtract + '/升'}</div>
+                        className="list" key={item.skuName}>{item.skuName + '（单价：' + item.originalPrice + '/升）立减￥' + item.mbrSubtract + '/升'}</div>
                 )
                 notMemberList.push(
                     <div
-                        className="list" key={item.skuName}>{item.skuName + '#（单价：' + item.originalPrice + '/升）立减￥' + item.nonMbrSubtract + '/升'}</div>
+                        className="list" key={item.skuName}>{item.skuName + '（单价：' + item.originalPrice + '/升）立减￥' + item.nonMbrSubtract + '/升'}</div>
                 )
             }
         }
