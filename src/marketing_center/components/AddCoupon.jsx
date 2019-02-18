@@ -526,13 +526,13 @@ class AddCoupon extends Component {
                     return ;
                 }
                 if(values.putInTime){
-                    if(new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime()
-                        < new Date((moment(Number(values.putInTime[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime()){
+                    if(new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime()
+                        < new Date((moment(Number(values.putInTime[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime()){
                         message.warning("卡券使用开始时间不能早于投放开始时间");
                         return ;
                     }
-                    if(new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 00:00:00').getTime()
-                        < new Date((moment(Number(values.putInTime[1])).format('YYYY.MM.DD')) +' 00:00:00')){
+                    if(new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime()
+                        < new Date((moment(Number(values.putInTime[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00')){
                         message.warning("卡券使用结束时间不能晚于投放结束时间");
                         return ;
                     }
@@ -555,8 +555,8 @@ class AddCoupon extends Component {
                // 投放时间段
                //  timePutStartUser = values.putInTime[0] ? moment(values.putInTime[0]).valueOf() : '';
                //  timePutEndUser = values.putInTime[1] ? moment(values.putInTime[1]).valueOf() : '';
-                timePutStartUser = values.putInTime[0] ? new Date((moment(Number(values.putInTime[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '';
-                timePutEndUser = values.putInTime[1] ? new Date((moment(Number(values.putInTime[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '';
+                timePutStartUser = values.putInTime[0] ? new Date((moment(Number(values.putInTime[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '';
+                timePutEndUser = values.putInTime[1] ? new Date((moment(Number(values.putInTime[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '';
                // 投放渠道
                 scenePutUser = values.wayPutIn;
                // 每位用户限领
@@ -593,8 +593,8 @@ class AddCoupon extends Component {
                             fixedTerm: values.validUsedTime==1?Number(propsParam.getFieldValue('days')):'',
                             // useTimeBegin:values.validUsedTime==0?moment(values.time[0]).valueOf():'',
                             // useTimeEnd: values.validUsedTime==0?moment(values.time[1]).valueOf():'',
-                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
                             // 适用油品-卡种id-关联商品，逗号拼接字符串,暂时写死
                             productSkuId: suitedOil,
                             // 发放总量-不限制传99999
@@ -695,8 +695,8 @@ class AddCoupon extends Component {
                             fixedTerm: values.validUsedTime==1?Number(propsParam.getFieldValue('days')):'',
                             // useTimeBegin:values.validUsedTime==0?moment(values.time[0]).valueOf():'',
                             // useTimeEnd: values.validUsedTime==0?moment(values.time[1]).valueOf():'',
-                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
                             // 适用油品-卡种id-关联商品，逗号拼接字符串,暂时写死
                             productSkuId: suitedOil,
                             // 发放总量-不限制传99999
@@ -750,8 +750,8 @@ class AddCoupon extends Component {
                             fixedTerm: values.validUsedTime==1?Number(propsParam.getFieldValue('days')):'',
                             // useTimeBegin:values.validUsedTime==0?moment(values.time[0]).valueOf():'',
                             // useTimeEnd: values.validUsedTime==0?moment(values.time[1]).valueOf():'',
-                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
                             // 适用油品-卡种id-关联商品，逗号拼接字符串,暂时写死
                             productSkuId: suitedOil,
                             // 发放总量-不限制传99999
@@ -806,8 +806,8 @@ class AddCoupon extends Component {
                             fixedTerm: values.validUsedTime==1?Number(propsParam.getFieldValue('days')):'',
                             // useTimeBegin:values.validUsedTime==0?moment(values.time[0]).valueOf():'',
                             // useTimeEnd: values.validUsedTime==0?moment(values.time[1]).valueOf():'',
-                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                            useTimeBegin:values.validUsedTime==0?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                            useTimeEnd: values.validUsedTime==0?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
                             // 适用油品-卡种id-关联商品，逗号拼接字符串,暂时写死
                             productSkuId: suitedOil,
                             // 发放总量-不限制传99999

@@ -102,8 +102,8 @@ class PointInfoContainer extends Component {
             memberId:memberId,
             // startTime:time && time.length && time[0] ? moment(time[0]).valueOf() : '',
             // moment 转换时间戳默认是从当前时间的时分秒开始，实际上应该是00:00:00-23:59:59
-            startTime:time && time.length && time[0] ? new Date((moment(Number(time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime:time && time.length && time[1] ? new Date((moment(Number(time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            startTime:time && time.length && time[0] ? new Date((moment(Number(time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime:time && time.length && time[1] ? new Date((moment(Number(time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
             type:status
         };
         this.listData(condition);
@@ -125,8 +125,8 @@ class PointInfoContainer extends Component {
             memberId:memberId,
             // startTime:time && time.length && time[0] ? moment(time[0]).valueOf() : '',
             // moment 转换时间戳默认是从当前时间的时分秒开始，实际上应该是00:00:00-23:59:59
-            startTime:time && time.length && time[0] ? new Date((moment(Number(time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime:time && time.length && time[1] ? new Date((moment(Number(time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            startTime:time && time.length && time[0] ? new Date((moment(Number(time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime:time && time.length && time[1] ? new Date((moment(Number(time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
             type:status
         };
         // 列表接口

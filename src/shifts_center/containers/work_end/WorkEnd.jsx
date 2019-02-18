@@ -215,6 +215,7 @@ class WorkEnd extends Component {
                             });
                             message.success('班结记录生成成功');
                             _this.findShiftRecordListFun({});
+                            _this.getShiftStartDateFun();
                         })
                         .catch((err) => {
 

@@ -134,8 +134,8 @@ class AccountInfoContainer extends Component {
             pageSize: pageSize,
             memberId: memberId,
             cardId: gasCardId,
-            beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
             tradeType: statusQi?statusQi:''
         };
         _self.listData(conditionQi);
@@ -185,8 +185,8 @@ class AccountInfoContainer extends Component {
             memberId: memberId,
             cardId: dieselCardId,
             // new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime()
-            beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')).replace(/\./g, "/").replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')).replace(/\./g, "/").replace(/\./g, "/") +' 23:59:59').getTime() : '',
             tradeType: statusChai?statusChai:''
         };
         _self.listData(conditionChai);
@@ -243,8 +243,8 @@ class AccountInfoContainer extends Component {
                 pageSize: pageSize,
                 memberId: memberId,
                 cardId: gasCardId,
-                beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-                endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+                beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+                endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
                 tradeType: statusQi?statusQi:''
             };
             _self.listData(conditionQi);
@@ -261,8 +261,8 @@ class AccountInfoContainer extends Component {
                 pageSize: pageSize,
                 memberId: memberId,
                 cardId: dieselCardId,
-                beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-                endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+                beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+                endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
                 tradeType: statusChai?statusChai:''
             };
             _self.listData(conditionChai);
@@ -285,8 +285,8 @@ class AccountInfoContainer extends Component {
             pageSize: pageSize,
             memberId: memberId,
             cardId: gasCardId,
-            beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            beginTime: timeQi && timeQi[0] ? new Date((moment(Number(timeQi[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime: timeQi && timeQi[1] ? new Date((moment(Number(timeQi[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
             tradeType: statusQi?statusQi:''
         };
         this.listData(conditionQi);
@@ -307,8 +307,8 @@ class AccountInfoContainer extends Component {
             pageSize: pageSize,
             memberId: memberId,
             cardId: dieselCardId,
-            beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime() : '',
-            endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime() : '',
+            beginTime: timeChai && timeChai[0] ? new Date((moment(Number(timeChai[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime() : '',
+            endTime: timeChai && timeChai[1] ? new Date((moment(Number(timeChai[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime() : '',
             tradeType: statusChai?statusChai:''
         };
         this.listData(conditionChai);

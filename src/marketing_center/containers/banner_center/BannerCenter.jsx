@@ -72,8 +72,11 @@ class BannerCenter extends Component {
                         title: values.title,
                         // startTime: moment(values.time[0]).valueOf(),
                         // endTime: moment(values.time[1]).valueOf(),
-                        startTime: values.time&&values.time[0]?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                        endTime: values.time&&values.time[1]?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                        // startTime: values.time&&values.time[0]?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
+                        // endTime: values.time&&values.time[1]?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                        startTime: values.time&&values.time[0]?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                        endTime: values.time&&values.time[1]?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
+
                         content: values.contentText,
                         url: values.outLink,
                         isDeleted: 0,
@@ -91,8 +94,8 @@ class BannerCenter extends Component {
                     BannerCenterService.noticeOperate({
                         id: '',
                         title: values.title,
-                        startTime: values.time&&values.time[0]?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')) +' 00:00:00').getTime():'',
-                        endTime: values.time&&values.time[1]?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')) +' 23:59:59').getTime():'',
+                        startTime: values.time&&values.time[0]?new Date((moment(Number(values.time[0])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 00:00:00').getTime():'',
+                        endTime: values.time&&values.time[1]?new Date((moment(Number(values.time[1])).format('YYYY.MM.DD')).replace(/\./g, "/") +' 23:59:59').getTime():'',
                         content: values.contentText,
                         url: values.outLink,
                         isDeleted: 0,
@@ -224,7 +227,7 @@ class BannerCenter extends Component {
                                                 initialValue: detailData.content ? detailData.content : ''
                                             })(
                                                 <TextArea autoComplete="off" placeholder="建议填写活动内容，不超过40个字" maxLength={40}
-                                                          rows={2} className="field-width-limit field-tip-align"/>
+                                                          rows={2} className="field-width-limit field-tip-align padding-textarea"/>
                                             )}
                                             <span className="field-tip-align">
                                                     <span>{params.getFieldValue('contentText')
@@ -241,7 +244,7 @@ class BannerCenter extends Component {
                                                 initialValue: detailData.url ? detailData.url : ''
                                             })(
                                                 <Input autoComplete="off" md={10} placeholder=""
-                                                       className="field-width-limit field-tip-align"/>
+                                                       className="field-width-limit field-tip-align padding-textarea"/>
                                             )}
                                         </FormItem>
                                     </div>
