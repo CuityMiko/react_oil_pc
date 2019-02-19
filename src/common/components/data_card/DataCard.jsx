@@ -28,7 +28,7 @@ class DataCard extends React.Component {
     static propTypes = {
         data: PropTypes.arrayOf(
             PropTypes.shape({
-                title: PropTypes.string.isrequired,
+                title: PropTypes.string.isRequired,
                 amount: PropTypes.oneOfType([
                     PropTypes.string,
                     PropTypes.number,

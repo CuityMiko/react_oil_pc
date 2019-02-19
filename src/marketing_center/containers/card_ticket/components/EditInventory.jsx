@@ -13,7 +13,7 @@ class EditInventory extends Component {
     // 参数类型
     static propTypes = {
         // 卡券名称
-        name: PropTypes.string.required,
+        name: PropTypes.string.isRequired,
         id:PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,

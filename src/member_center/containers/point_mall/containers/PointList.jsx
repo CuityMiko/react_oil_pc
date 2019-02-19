@@ -196,26 +196,28 @@ class PointList extends React.Component {
         const _self = this;
         this.form.validateFields((err, values) => {
             console.log('Received values of form: ', values);
-            let postData = {};
-            postData.inventory = Number(values.inventory);
-            postData.type = values.type;
-            postData.id = checkedCardData.id;
-            postData.skuId = checkedCardData.skuId;
-            pointMallService.scoreExchangeModifyInventory(
-                Object.assign({}, {...postData})
-            ).then(res => {
-                _self.setState({
-                    visible: false,
-                    checkedCardData: []
-                });
-                message.success('修改库存成功');
-                _self.fetch({
-                    pageNO: current,
-                    pageSize: pageSize,
-                });
-            }).catch(err => {
-                console.log(err);
-            })
+            if(!err){
+                let postData = {};
+                postData.inventory = Number(values.inventory);
+                postData.type = values.type;
+                postData.id = checkedCardData.id;
+                postData.skuId = checkedCardData.skuId;
+                pointMallService.scoreExchangeModifyInventory(
+                    Object.assign({}, {...postData})
+                ).then(res => {
+                    _self.setState({
+                        visible: false,
+                        checkedCardData: []
+                    });
+                    message.success('修改库存成功');
+                    _self.fetch({
+                        pageNO: current,
+                        pageSize: pageSize,
+                    });
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
         })
     }
 

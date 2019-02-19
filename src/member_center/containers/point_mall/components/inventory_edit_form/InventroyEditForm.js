@@ -9,8 +9,8 @@ const RadioGroup = Radio.Group;
 
 class inventoryEditForm extends Component {
     static propTypes = {
-        name: PropTypes.string.required,         //活动名称
-        count: PropTypes.string.required
+        name: PropTypes.string.isRequired,         //活动名称
+        count: PropTypes.string.isRequired
     };
 
     state = {
@@ -60,6 +60,7 @@ class inventoryEditForm extends Component {
                     {...formItemLayout}
                     label="增减选择"
                 >  {getFieldDecorator('type', {
+                    rules: [{required: true, message: '请选择是增加还是减少库存'}]
                 })(
                     <RadioGroup onChange={this.onChange}>
                         <Radio value={1}>增加</Radio>
