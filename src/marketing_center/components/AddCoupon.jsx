@@ -334,11 +334,12 @@ class AddCoupon extends Component {
         }
         if (info.file.status === 'done') {
             // 得到返回结果
-            this.setState({
-                imageUrl: info.file.response.data.results[0].url,
-                loading: false
-            });
-
+            if(info.file.response.data && info.file.response.data.results){
+                this.setState({
+                    imageUrl: info.file.response.data.results[0].url,
+                    loading: false
+                });
+            }
         }
     };
     // 适用油品级联变动
@@ -503,6 +504,12 @@ class AddCoupon extends Component {
         const dataParam = this.getParamsValue();
         // this.props.form.clearValidate();
         this.props.form.validateFields((err, values) => {
+
+            // 将form表单中的支付限制数组形式更改为逗号拼接的字符串形式
+            var payLimit="";
+            if(values.payWayLimit && values.payWayLimit.length>0){
+                payLimit = values.payWayLimit.join(',')
+            }
             let suitedOil;
             // 适用油品选择情况处理，需要将大类的id转换为小类id进行拼接
             if(values.suitedOil && values.suitedOil.length>0){
@@ -614,6 +621,9 @@ class AddCoupon extends Component {
                             useTimeWeek: '1,2,3,4,5,6,7',
                             // 每位用户限领'不限制传99999'
                             getLimit:limitGetUser,
+                            // 新增支付限制
+                            payLimit:payLimit,
+
                             // 过期提醒，字段未定
                             invalidTip:values.invalidTip==1?'1':'0'
                         }).then((res) => {
@@ -716,6 +726,8 @@ class AddCoupon extends Component {
                             useTimeWeek: '1,2,3,4,5,6,7',
                             // 每位用户限领'不限制传99999'
                             getLimit:limitGetUser,
+                            // 新增支付限制
+                            payLimit:payLimit,
                             // 过期提醒，字段未定
                             invalidTip:values.invalidTip==1?'1':'0'
                         }).then((res) => {
@@ -771,6 +783,8 @@ class AddCoupon extends Component {
                             useTimeWeek: '1,2,3,4,5,6,7',
                             // 每位用户限领'不限制传99999'
                             getLimit:limitGetUser,
+                            // 新增支付限制
+                            payLimit:payLimit,
                             // 过期提醒，字段未定
                             invalidTip:values.invalidTip==1?'1':'0'
                         }).then((res) => {
@@ -827,6 +841,8 @@ class AddCoupon extends Component {
                             useTimeWeek: '1,2,3,4,5,6,7',
                             // 每位用户限领'不限制传99999'
                             getLimit:limitGetUser,
+                            // 新增支付限制
+                            payLimit:payLimit,
                             // 过期提醒，字段未定
                             invalidTip:values.invalidTip==1?'1':'0'
                         }).then((res) => {
@@ -931,7 +947,6 @@ class AddCoupon extends Component {
                 // width: 300,
             },
         };
-
         return (
             <div className={addCouponContainer}>
                 <div className={responsive.data.isMobile ? 'mobile-set' : ''}>
@@ -1259,6 +1274,26 @@ class AddCoupon extends Component {
                                     </Col>
                                 </Row>
                             )}
+
+                            <Row gutter={{xs: 8, md: 24, lg: 32}} type="flex" align="middle" className="row-spacing">
+                                <Col md={24} xs={24} type="flex" align="middle" className="row-col-container">
+                                    <FormItem {...formItemLayout} label="支付限制">
+                                        {getFieldDecorator('payWayLimit', {
+                                            rules: [
+                                                {required:true, message: '请至少选择1个支付方式'},
+                                            ],
+                                            initialValue:originData.payLimit?originData.payLimit.split(','):[]
+                                        })(
+                                            <Checkbox.Group style={{ width: '100%' }}>
+                                                <Row>
+                                                    <Col span={5}><Checkbox value="1">会员卡支付</Checkbox></Col>
+                                                    <Col span={5}><Checkbox value="2">微信支付</Checkbox></Col>
+                                                </Row>
+                                            </Checkbox.Group>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
                         </Panel>
                         <WhiteSpace size="v-lg"/>
                         {/*过期提醒先隐藏*/}

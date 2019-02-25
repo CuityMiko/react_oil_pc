@@ -227,6 +227,9 @@ const detailCoupon = function (couponNumber,couponDetailScene) {
                     .set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
                     .set('使用时段','不限制')
                     .set('每位用户限领',res.getLimit==99999?'不限制':res.getLimit+'张')
+                    .set('支付限制',res.payLimit?res.payLimit.split(',').length==2?'会员卡支付，微信支付':
+                        res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':
+                            res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }else {
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
                     .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
@@ -238,6 +241,9 @@ const detailCoupon = function (couponNumber,couponDetailScene) {
                     .set('卡券说明',res.remark?res.remark:'--')
                 dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
                     .set('使用时段','不限制')
+                    .set('支付限制',res.payLimit?res.payLimit.split(',').length==2?'会员卡支付，微信支付':
+                        res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':
+                            res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }
             // 过期提醒后台暂时没做，字段不定
             dataCouponDetail.dataExpired.set('过期提醒',res.invalidTip==1?'过期前3天提醒':'不提醒')
@@ -297,6 +303,9 @@ const detailCouponId = function (couponNumber,couponDetailScene) {
                     .set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
                     .set('使用时段','不限制')
                     .set('每位用户限领',res.getLimit==99999?'不限制':res.getLimit+'张')
+                    .set('支付限制',res.payLimit? res.payLimit.split(',').length==2?'会员卡支付，微信支付':
+                        res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':
+                            res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }else {
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
                     .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
@@ -308,6 +317,9 @@ const detailCouponId = function (couponNumber,couponDetailScene) {
                     .set('卡券说明',res.remark?res.remark:'--')
                 dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
                     .set('使用时段','不限制')
+                    .set('支付限制',res.payLimit?res.payLimit.split(',').length==2?'会员卡支付，微信支付':
+                        res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':
+                            res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }
             // 过期提醒后台暂时没做，字段不定
             dataCouponDetail.dataExpired.set('过期提醒',res.invalidTip==1?'过期前3天提醒':'不提醒')

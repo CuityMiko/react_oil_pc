@@ -11,6 +11,7 @@ import 'moment/locale/zh-cn';
 import Panel from '@/common/components/panel/Panel';
 import TableSearch from '@/common/components/table_search/TableSearch';
 import WhiteSpace from '@/common/components/white_space/WhiteSpace';
+import NumberCard from '@/common/components/number_card/NumberCard';
 
 import dataCenterService from '@/data_center/services/data_center.service';
 
@@ -33,10 +34,13 @@ class ConsumerOrders extends Component {
         // 每页显示的条数
         pageSize: 20,
         // 总共的数据条数
-        total: 0
+        total: 0,
+        // 订单汇总数据
+        numberData: new Map()
     };
 
     componentDidMount() {
+        this.getOrderConsumeCountFun({});
         this.querySimpleOrderFun({});
     }
 
@@ -54,6 +58,29 @@ class ConsumerOrders extends Component {
                 this.setState({
                     orderData: res.items,
                     total: res.total
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    };
+
+    // 查询消费订单汇总数据
+    getOrderConsumeCountFun = ({payTimeStart='', payTimeEnd='', orderNumberFilter='', statusFilter=''}) => {
+        dataCenterService.getOrderConsumeCount({
+            payTimeStart: payTimeStart,
+            payTimeEnd: payTimeEnd,
+            orderNumberFilter: orderNumberFilter,
+            statusFilter: statusFilter
+        })
+            .then((res) => {
+                this.setState({
+                    numberData: new Map().set('订单总额', `￥${Number(res.orderTotalAmount).toFixed(2)}`)
+                        .set('订单总数', res.orderNum)
+                        .set('优惠总额', `￥${Number(res.discountPrice).toFixed(2)}`)
+                        .set('油站实收', `￥${Number(res.paidIn).toFixed(2)}`)
+                        .set('扣款金额', `汽：￥${Number(res.chargeAmount.gasoline).toFixed(2)} 柴：￥${Number(res.chargeAmount.diesel).toFixed(2)}`)
+                        .set('退款总额', `￥${Number(res.refundAmount).toFixed(2)}`)
                 })
             })
             .catch((err) => {
@@ -83,6 +110,12 @@ class ConsumerOrders extends Component {
             pageNo: 1
         });
         let fieldValueData = this.getFieldValueFun();
+        this.getOrderConsumeCountFun({
+            payTimeStart: fieldValueData.payTimeStart,
+            payTimeEnd: fieldValueData.payTimeEnd,
+            statusFilter: fieldValueData.statusFilter,
+            orderNumberFilter: fieldValueData.orderNumberFilter
+        });
         this.querySimpleOrderFun({
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
@@ -95,6 +128,7 @@ class ConsumerOrders extends Component {
     reset = () => {
         // 清空查询条件
         this.props.form.resetFields();
+        this.getOrderConsumeCountFun({});
         this.querySimpleOrderFun({});
     };
 
@@ -137,7 +171,8 @@ class ConsumerOrders extends Component {
             orderData,
             total,
             pageSize,
-            pageNo
+            pageNo,
+            numberData
         } = this.state;
 
         const columns = [
@@ -251,6 +286,7 @@ class ConsumerOrders extends Component {
                         <Button type="primary" onClick={this.exportSimpleOrderFun}>导出</Button>
                     </Form>
                     <WhiteSpace size="v-lg" />
+                    <NumberCard numberData={numberData} />
                     <div className="scroll-table">
                         <Table locale={{emptyText: '暂无数据'}}
                                dataSource={orderData}

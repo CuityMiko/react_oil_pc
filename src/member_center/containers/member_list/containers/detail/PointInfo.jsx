@@ -248,6 +248,7 @@ class PointInfoContainer extends Component {
                                         <Option value="3">退款扣除</Option>
                                         <Option value="4">开卡注册</Option>
                                         <Option value="7">会员导入</Option>
+                                        <Option value="5">手动修改</Option>
                                     </Select>
                                 )}
                             </FormItem>

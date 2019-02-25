@@ -19,10 +19,36 @@ const querySimpleOrder = function (params) {
     return deferred.promise;
 };
 
+// 查询消费订单统计数据
+const getOrderConsumeCount = function (params) {
+    const deferred = q.defer();
+    httpHelper.get(dataCerterUrls.getOrderConsumeCountUrl, params)
+        .then((res) => {
+            deferred.resolve(res)
+        })
+        .catch((err) => {
+            deferred.reject(err)
+        });
+    return deferred.promise;
+};
+
 // 查询充值订单列表
 const queryRechargeOrder = function (params) {
     const deferred = q.defer();
     httpHelper.get(dataCerterUrls.queryRechargeOrderUrl, params)
+        .then((res) => {
+            deferred.resolve(res)
+        })
+        .catch((err) => {
+            deferred.reject(err)
+        });
+    return deferred.promise;
+};
+
+// 查询充值订单统计数据
+const getOrderRechargeCount = function (params) {
+    const deferred = q.defer();
+    httpHelper.get(dataCerterUrls.getOrderRechargeCountUrl, params)
         .then((res) => {
             deferred.resolve(res)
         })
@@ -105,5 +131,7 @@ export default {
     getSimpleOrderDetail,
     refund,
     getOrderTotal,
-    getMemberConsumeData
+    getMemberConsumeData,
+    getOrderConsumeCount,
+    getOrderRechargeCount
 }

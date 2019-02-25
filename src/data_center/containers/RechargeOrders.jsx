@@ -10,6 +10,7 @@ import 'moment/locale/zh-cn';
 import Panel from '@/common/components/panel/Panel';
 import TableSearch from '@/common/components/table_search/TableSearch';
 import WhiteSpace from '@/common/components/white_space/WhiteSpace';
+import NumberCard from '@/common/components/number_card/NumberCard';
 
 import dataCenterService from '@/data_center/services/data_center.service';
 
@@ -29,10 +30,13 @@ class RechargeOrders extends Component {
         // 每页显示的条数
         pageSize: 20,
         // 总共的数据条数
-        total: 0
+        total: 0,
+        // 订单汇总数据
+        numberData: new Map()
     };
 
     componentDidMount() {
+        this.getOrderRechargeCountFun({});
         this.queryRechargeOrderFun({});
     }
 
@@ -58,6 +62,28 @@ class RechargeOrders extends Component {
             })
     };
 
+    // 查询统计订单汇总数据
+    getOrderRechargeCountFun = ({payTimeStart='', payTimeEnd='', orderNumberFilter='', mobile='', cardSpecId=''}) => {
+        dataCenterService.getOrderRechargeCount({
+            payTimeStart: payTimeStart,
+            payTimeEnd: payTimeEnd,
+            orderNumberFilter: orderNumberFilter,
+            mobile: mobile,
+            cardSpecId: cardSpecId
+        })
+            .then((res) => {
+                this.setState({
+                    numberData: new Map().set('实储总额', `￥${Number(res.realStorageAmount).toFixed(2)}`)
+                        .set('赠送金额', `￥${Number(res.giftAmount).toFixed(2)}`)
+                        .set('储值总额', `￥${Number(res.totalAmount).toFixed(2)}`)
+                        .set('储值余额', `￥${Number(res.storedValueBalance).toFixed(2)}`)
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    };
+
     // 导出充值订单列表
     exportRechargeOrderFun = () => {
         let fieldValueData = this.getFieldValueFun();
@@ -76,6 +102,13 @@ class RechargeOrders extends Component {
             pageNo: 1
         });
         let fieldValueData = this.getFieldValueFun();
+        this.getOrderRechargeCountFun({
+            payTimeStart: fieldValueData.payTimeStart,
+            payTimeEnd: fieldValueData.payTimeEnd,
+            orderNumberFilter: fieldValueData.orderNumberFilter,
+            mobile: fieldValueData.mobile,
+            cardSpecId: fieldValueData.cardSpecId
+        });
         this.queryRechargeOrderFun({
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
@@ -89,6 +122,7 @@ class RechargeOrders extends Component {
     reset = () => {
         // 清空查询条件
         this.props.form.resetFields();
+        this.getOrderRechargeCountFun({});
         this.queryRechargeOrderFun({});
     };
 
@@ -133,7 +167,8 @@ class RechargeOrders extends Component {
             orderData,
             total,
             pageSize,
-            pageNo
+            pageNo,
+            numberData
         } = this.state;
 
         const columns = [
@@ -264,6 +299,7 @@ class RechargeOrders extends Component {
                         <Button type="primary" onClick={this.exportRechargeOrderFun}>导出</Button>
                     </Form>
                     <WhiteSpace size="v-lg" />
+                    <NumberCard numberData={numberData} />
                     <div className="scroll-table">
                         <Table locale={{emptyText: '暂无数据'}}
                                dataSource={orderData}

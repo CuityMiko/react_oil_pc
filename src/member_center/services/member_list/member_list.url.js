@@ -24,6 +24,9 @@ export const scoreCountUrl = '/api/mer/mbr-score/score/count';
 // 积分列表
 export const scoreListUrl = '/api/mer/mbr-score/query-score/list';
 
+// 手动修改积分
+export const editScoreUrl = '/api/mer/mbr-score/hand-modify';
+
 // 首页用到的新增会员数量统计
 export const newTotalMbrUrl = '/api/mbr-statistics/increased-total';
 

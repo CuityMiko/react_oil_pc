@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import TableSearch from '@/common/components/table_search/TableSearch';
 import DataCard from '@/common/components/data_card/DataCard';
+import EditScore from '@/member_center/components/EditScore';
 import WhiteSpace from '@/common/components/white_space/WhiteSpace';
 import WingBlank from '@/common/components/wing_blank/WingBlank';
 import addNewMbr from '@/member_center/assets/images/add-new-mbr.png';
@@ -35,7 +36,9 @@ class MemberList extends Component {
         // 每页显示的条数
         pageSize: 20,
         // 总共的数据条数
-        total: 0
+        total: 0,
+        // 修改积分弹出框
+        visibleInventory:false,
     };
 
     componentWillMount() {
@@ -162,10 +165,67 @@ class MemberList extends Component {
         });
     };
 
+
+    // 修改积分弹出框
+    editScore = (id,availableScore)=>{
+        this.showModalInventory('修改积分',id,availableScore);
+    };
+
+    // 修改库存模态框
+    showModalInventory = (title,id,availableScore) => {
+        this.setState({
+            visibleInventory: true,
+            modalTitle: title,
+            availableScore:availableScore,
+            id:id,
+        });
+    };
+
+    handleCancelInventory = () => {
+        this.setState({
+            visibleInventory: false,
+        });
+    };
+    // 弹出框关闭之后执行卡券列表服务
+    afterCloseModal = () => {
+        // 列表接口
+        const {pageNo, pageSize} = this.state;
+        this.listData(pageNo, pageSize);
+        this.countMbrData(this.state.icons);
+    };
+    // 修改库存接口
+    handleSubmitInventory = (e) => {
+        const self = this;
+        const {id,pageNo, pageSize} = self.state;
+        e.preventDefault();
+        self.refs.editScoreForm.validateFields((err, values) => {
+            if (!err) {
+              //  调用修改积分接口
+                MemberListService.editScore({
+                    score:parseInt(values.amount),
+                    tag:values.type,
+                    memberId:id
+                }).then((res)=>{
+                    message.success('修改积分成功');
+                    this.setState({
+                        visibleInventory: false,
+                    });
+                    // 列表接口
+                    self.listData(pageNo, pageSize);
+                }).catch(
+                    (err) => {
+                        console.log('err');
+                    }
+                );
+            }
+        });
+    };
+
+
     // 渲染html
     render() {
         const { getFieldDecorator } = this.props.form;
-        const {total, pageSize, pageNo} = this.state;
+        const {total, pageSize, pageNo, id, availableScore} = this.state;
         const formItemLayout = {
             labelCol: {
                 md:{ span:6},
@@ -238,6 +298,10 @@ class MemberList extends Component {
                 render: (text, record) => (
                     <Fragment>
                         <a href="javascript:" onClick={() => {
+                            this.editScore(record.id,record.availableScore)
+                        }}>修改积分</a>
+                        <Divider type="vertical" />
+                        <a href="javascript:" onClick={() => {
                             this.detail(record.id)
                         }}>查看</a>
                         <Divider type="vertical" />
@@ -281,6 +345,21 @@ class MemberList extends Component {
                         </Col>
                     </Row>
                 </WingBlank>
+
+                {/*修改积分模态框*/}
+                <Modal
+                    title="修改积分"
+                    visible={this.state.visibleInventory}
+                    okText="确认"
+                    cancelText="取消"
+                    onOk={this.handleSubmitInventory}
+                    afterClose={this.afterCloseModal}
+                    onCancel={this.handleCancelInventory}
+                    destroyOnClose={true}
+                >
+                    <EditScore ref='editScoreForm' availableScore={availableScore} id={id} />
+                </Modal>
+
             </div>
         )
     }

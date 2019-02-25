@@ -5,8 +5,14 @@
 // 查询消费订单列表
 const querySimpleOrderUrl = '/api/mer/order/query-simple-order';
 
+// 查询消费订单列表汇总数据
+const getOrderConsumeCountUrl = '/api/mer/order-statistics/order-consume-count';
+
 // 查询充值订单列表
 const queryRechargeOrderUrl = '/api/mer/order/query-recharge-order';
+
+// 查询充值订单列表汇总数据
+const getOrderRechargeCountUrl = '/api/mer/order-statistics/order-rechage-count';
 
 // 导出消费订单列表
 const exportSimpleOrderUrl = '/api/mer/order/export-simple-order';
@@ -33,7 +39,8 @@ export default {
     exportRechargeOrderUrl,
     getSimpleOrderDetailUrl,
     refundUrl,
-    getSimpleOrderDetailUrl,
     getOrderTotalUrl,
-    getMemberConsumeDataUrl
+    getMemberConsumeDataUrl,
+    getOrderConsumeCountUrl,
+    getOrderRechargeCountUrl
 }

@@ -300,10 +300,12 @@ class MemberCardSetting extends Component {
         }
         if (info.file.status === 'done') {
             // 得到返回结果
-            this.setState({
-                imageUrl:info.file.response.data.results[0].url,
-                loading:false
-            });
+            if(info.file.response.data && info.file.response.data.results){
+                this.setState({
+                    imageUrl:info.file.response.data.results[0].url,
+                    loading:false
+                });
+            }
         }
     };
 
@@ -326,10 +328,12 @@ class MemberCardSetting extends Component {
         }
         if (info.file.status === 'done') {
             // 得到返回结果
-            this.setState({
-                imageUrlMbr:info.file.response.data.results[0].url,
-                loadingMbr:false
-            });
+            if(info.file.response.data && info.file.response.data.results){
+                this.setState({
+                    imageUrlMbr:info.file.response.data.results[0].url,
+                    loadingMbr:false
+                });
+            }
             // 判断是默认会员卡封面还是自定义
             if(this.state.cardCoverType == 1){
                 this.setState({

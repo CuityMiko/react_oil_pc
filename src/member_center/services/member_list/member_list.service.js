@@ -9,7 +9,7 @@ import httpHelper from '@/base/axios/http_helper';
 
 // 会员列表-详情-删除-新增量-导出
 import {listMbrUrl,detailMbrUrl,delteMbrUrl,amountMbrUrl,exportMbrUrl,
-    storedCountUrl,storedListUrl,scoreCountUrl,scoreListUrl,newTotalMbrUrl,
+    storedCountUrl,storedListUrl,scoreCountUrl,scoreListUrl,editScoreUrl,newTotalMbrUrl,
     mbrImportListUrl,codeImportUrl,verifyCodeImportUrl,mbrUploadImportUrl,resultUploadImportUrl
 } from './member_list.url';
 
@@ -240,6 +240,19 @@ const scoreList = function (data) {
     return deferred.promise;
 };
 
+// 手动修改积分
+const editScore = function (data) {
+    const params = Object.assign({}, data);
+    const deferred = q.defer();
+    httpHelper.post(editScoreUrl,params).then(res => {
+        deferred.resolve(res);
+    }).catch(err => {
+        deferred.reject(err);
+    });
+    return deferred.promise;
+};
+
+
 // 首页用到的新增会员数量统计
 const newTotalMbr = function (data) {
     const params = Object.assign({}, {...data});
@@ -320,6 +333,7 @@ export default {
     storedList,
     scoreCount,
     scoreList,
+    editScore,
     newTotalMbr,
     mbrImportList,
     codeImport,
