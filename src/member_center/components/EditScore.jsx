@@ -29,7 +29,7 @@ class EditScore extends Component {
             rule.message = '请填写积分';
             callback('请填写积分');
         }
-        if(value===0){
+        if(value==0){
             rule.message = '积分不能为0';
             callback('积分不能为0');
         }
@@ -37,6 +37,7 @@ class EditScore extends Component {
             rule.message = '积分格式不正确';
             callback('积分格式不正确');
         }
+
         if(type == -1){
             if(value > availableScore){
                 rule.message = '减少积分不能大于当前可用积分';
@@ -84,7 +85,7 @@ class EditScore extends Component {
                                 {validator: this.checkScore}
                             ]
                         })(
-                            <InputNumber  autoComplete="off" placeholder="" />
+                            <Input maxLength={4} autoComplete="off" placeholder="" style={{width:'40%'}} />
                         )}
                     </FormItem>
                 </Form>

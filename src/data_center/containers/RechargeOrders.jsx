@@ -218,7 +218,7 @@ class RechargeOrders extends Component {
                 }
             },
             {
-                title: '赠送金额',
+                title: '赠送',
                 dataIndex: 'giftContent',
                 key: 'giftContent',
                 render: (text, record, index) => {
@@ -231,9 +231,10 @@ class RechargeOrders extends Component {
                                 return '￥0.00'
                             }
                         case 1:
-                            return text;
+                            return text+'积分';
                         case 2:
-                            return text;
+                            // 赠送券显示，text后期根据后端返回的卡券名字段进行显示如record.giftContentName
+                            return record.giftContentName?record.giftContentName.length>5?record.giftContentName.slice(0,5)+'...':record.giftContentName:'-';
                         default:
                             return '-';
                     }
