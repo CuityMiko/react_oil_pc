@@ -115,24 +115,24 @@ const storedCount = function (cardId,icons) {
     let dataTotalStoredQi = [
         {
             'title':'汽油卡储值余额',
-            'amount':0,
+            'amount':'￥0.00',
             'icon':icons.availMoney
         },
         {
             'title':'汽油卡储值总额',
-            'amount':0,
+            'amount':'￥0.00',
             'icon':icons.totalMoney
         }
     ];
     let dataTotalStoredChai = [
         {
             'title':'柴油卡储值余额',
-            'amount':0,
+            'amount':'￥0.00',
             'icon':icons.availMoney
         },
         {
             'title':'柴油卡储值总额',
-            'amount':0,
+            'amount':'￥0.00',
             'icon':icons.totalMoney
         }
     ];
@@ -145,24 +145,24 @@ const storedCount = function (cardId,icons) {
             dataTotalStoredQi = [
                 {
                     'title':'汽油卡储值余额',
-                    'amount':res.balance,
+                    'amount':res.balance?'￥'+Number(res.balance).toFixed(2):'￥0.00',
                     'icon':icons.availMoney
                 },
                 {
                     'title':'汽油卡储值总额',
-                    'amount':res.amount,
+                    'amount':res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00',
                     'icon':icons.totalMoney
                 }
             ];
             dataTotalStoredChai = [
                 {
                     'title':'柴油卡储值余额',
-                    'amount':res.balance,
+                    'amount':res.balance?'￥'+Number(res.balance).toFixed(2):'￥0.00',
                     'icon':icons.availMoney
                 },
                 {
                     'title':'柴油卡储值总额',
-                    'amount':res.amount,
+                    'amount':res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00',
                     'icon':icons.totalMoney
                 }
             ]

@@ -51,7 +51,6 @@ class GoodesCard extends React.Component {
 
     onDel = (e) => {
         const {id} = this.props;
-        console.log('onDel', id);
         e.preventDefault();
         e.stopPropagation();
         this.props.onDel({
@@ -124,11 +123,11 @@ class GoodesCard extends React.Component {
             for (let item of details) {
                 isMemberList.push(
                     <div
-                        className="list" key={item.skuName}>{item.skuName + '（单价：' + item.originalPrice + '/升）立减￥' + item.mbrSubtract + '/升'}</div>
+                        className="list" key={item.skuName}>{item.skuName + '（单价：' + Number(item.originalPrice).toFixed(2) + '/升）立减￥' + Number(item.mbrSubtract).toFixed(2) + '/升'}</div>
                 )
                 notMemberList.push(
                     <div
-                        className="list" key={item.skuName}>{item.skuName + '（单价：' + item.originalPrice + '/升）立减￥' + item.nonMbrSubtract + '/升'}</div>
+                        className="list" key={item.skuName}>{item.skuName + '（单价：' + Number(item.originalPrice).toFixed(2) + '/升）立减￥' + Number(item.nonMbrSubtract).toFixed(2) + '/升'}</div>
                 )
             }
         }
@@ -142,7 +141,7 @@ class GoodesCard extends React.Component {
 
             <div className={goodsCardClass}>
                 <Card
-                    title={(<div><span>{name}</span>
+                    title={(<div style={{'whiteSpace':'normal'}}><span>{name}</span>
                         <span className="status-content">(
                         <span className="status">{statusShowData.statusStr}</span>
                             ) </span>

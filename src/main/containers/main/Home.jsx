@@ -106,8 +106,8 @@ class Home extends React.Component {
                 y: []
             }
             if (res != null) {
-                const memberConsumptiveTotal = res.memberConsumptiveTotal || 0; // 会员消费
-                const nonMemberConsumptiveTotal = res.nonMemberConsumptiveTotal || 0; // 非会员消费
+                const memberConsumptiveTotal = res.memberConsumptiveTotal?Number(res.memberConsumptiveTotal).toFixed(2):0.00; // 会员消费
+                const nonMemberConsumptiveTotal = res.nonMemberConsumptiveTotal?Number(res.nonMemberConsumptiveTotal).toFixed(2):0.00; // 非会员消费
                 let x = [`非会员消费: ￥${nonMemberConsumptiveTotal}`, `会员消费: ￥${memberConsumptiveTotal}`];
                 let y = [
                     {value: nonMemberConsumptiveTotal, name: `非会员消费: ￥${nonMemberConsumptiveTotal}`},
@@ -132,12 +132,12 @@ class Home extends React.Component {
         }).then((res)=>{
             obj1 = {
                 'title':'消费总额',
-                'amount':'￥'+res.totalConsumptiveAmount,
+                'amount':res.totalConsumptiveAmount?'￥'+Number(res.totalConsumptiveAmount).toFixed(2):'￥0.00',
                 'icon':totalConsume1
             }
             obj2 = {
                 'title':'充值总额',
-                'amount':'￥'+res.totalRechargeAmount,
+                'amount':res.totalRechargeAmount?'￥'+Number(res.totalRechargeAmount).toFixed(2):'￥0.00',
                 'icon':totalRecharge2
             }
             dataCount.push(obj1);
@@ -180,9 +180,9 @@ class Home extends React.Component {
         let monthNowStart = moment().startOf('month').format('x');
         let monthNowEnd = moment().endOf('month').format('x');
         // 上月-开始时间-结束时间
-        let monthYesStart = (moment().subtract('month', 1).format('YYYY-MM') + '-01')
+        let monthYesStart = (moment().subtract('month', 1).format('YYYY/MM') + '/01')
         monthYesStart = new Date(monthYesStart + ' 00:00:00').getTime();
-        let monthYesEnd = (moment(monthYesStart).subtract('month', -1).add('days', -1).format('YYYY-MM-DD'))
+        let monthYesEnd = (moment(monthYesStart).subtract('month', -1).add('days', -1).format('YYYY/MM/DD'))
         monthYesEnd = new Date(monthYesEnd + ' 23:59:59').getTime();
         if (e.target.value == 1) {
             this.setState({

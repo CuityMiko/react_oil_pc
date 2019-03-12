@@ -14,6 +14,7 @@ import WhiteSpace from '@/common/components/white_space/WhiteSpace';
 import NumberCard from '@/common/components/number_card/NumberCard';
 
 import dataCenterService from '@/data_center/services/data_center.service';
+import operatorManageService from '@/oiltation_manage/services/operator_manage/operator_manage.service';
 
 const { RangePicker } = DatePicker;
 moment.locale('zh-cn');
@@ -36,23 +37,45 @@ class ConsumerOrders extends Component {
         // 总共的数据条数
         total: 0,
         // 订单汇总数据
-        numberData: new Map()
+        numberData: new Map(),
+        // 加油员
+        dataSourceStaff:[],
+        pageNoStaff:1,
+        pageSizeStaff:10000,
     };
 
     componentDidMount() {
         this.getOrderConsumeCountFun({});
         this.querySimpleOrderFun({});
+
+        // 获取加油员信息
+        const {pageNoStaff,pageSizeStaff} = this.state;
+        operatorManageService.QueryStaffList({
+            pageNO:pageNoStaff,
+            pageSize:pageSizeStaff
+        }).then((res) => {
+            this.setState({
+                dataSourceStaff: res.items,
+            })
+        }).catch(
+            (err) => {
+                console.log('err');
+            }
+        )
+
     }
 
     // 查询消费订单列表
-    querySimpleOrderFun = ({pageNo=1, pageSize=20, payTimeStart='', payTimeEnd='', orderNumberFilter='', statusFilter=''}) => {
+    querySimpleOrderFun = ({pageNo=1, pageSize=20, payTimeStart='', payTimeEnd='', orderNumberFilter='', statusFilter='',staffId='',payEntry=''}) => {
         dataCenterService.querySimpleOrder({
             pageNO: pageNo,
             pageSize: pageSize,
             payTimeStart: payTimeStart,
             payTimeEnd: payTimeEnd,
             orderNumberFilter: orderNumberFilter,
-            statusFilter: statusFilter
+            statusFilter: statusFilter,
+            staffId:staffId,
+            payEntry:payEntry
         })
             .then((res) => {
                 this.setState({
@@ -66,12 +89,14 @@ class ConsumerOrders extends Component {
     };
 
     // 查询消费订单汇总数据
-    getOrderConsumeCountFun = ({payTimeStart='', payTimeEnd='', orderNumberFilter='', statusFilter=''}) => {
+    getOrderConsumeCountFun = ({payTimeStart='', payTimeEnd='', orderNumberFilter='', statusFilter='',staffId='',payEntry=''}) => {
         dataCenterService.getOrderConsumeCount({
             payTimeStart: payTimeStart,
             payTimeEnd: payTimeEnd,
             orderNumberFilter: orderNumberFilter,
-            statusFilter: statusFilter
+            statusFilter: statusFilter,
+            staffId:staffId,
+            payEntry:payEntry
         })
             .then((res) => {
                 this.setState({
@@ -100,7 +125,9 @@ class ConsumerOrders extends Component {
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
             statusFilter: fieldValueData.statusFilter || '',
-            orderNumberFilter: fieldValueData.orderNumberFilter || ''
+            orderNumberFilter: fieldValueData.orderNumberFilter || '',
+            staffId:fieldValueData.staffId||'',
+            payEntry:fieldValueData.payEntry!=undefined?fieldValueData.payEntry:''
         })
     };
 
@@ -114,13 +141,17 @@ class ConsumerOrders extends Component {
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
             statusFilter: fieldValueData.statusFilter,
-            orderNumberFilter: fieldValueData.orderNumberFilter
+            orderNumberFilter: fieldValueData.orderNumberFilter,
+            staffId:fieldValueData.staffId||'',
+            payEntry:fieldValueData.payEntry!=undefined?fieldValueData.payEntry:''
         });
         this.querySimpleOrderFun({
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
             statusFilter: fieldValueData.statusFilter,
-            orderNumberFilter: fieldValueData.orderNumberFilter
+            orderNumberFilter: fieldValueData.orderNumberFilter,
+            staffId:fieldValueData.staffId||'',
+            payEntry:fieldValueData.payEntry!=undefined?fieldValueData.payEntry:''
         })
     };
 
@@ -143,7 +174,9 @@ class ConsumerOrders extends Component {
             payTimeStart: fieldValueData.payTimeStart,
             payTimeEnd: fieldValueData.payTimeEnd,
             statusFilter: fieldValueData.statusFilter,
-            orderNumberFilter: fieldValueData.orderNumberFilter
+            orderNumberFilter: fieldValueData.orderNumberFilter,
+            staffId:fieldValueData.staffId||'',
+            payEntry:fieldValueData.payEntry!=undefined?fieldValueData.payEntry:''
         });
     };
 
@@ -160,19 +193,21 @@ class ConsumerOrders extends Component {
             statusFilter: this.props.form.getFieldValue('statusFilter'),
             orderNumberFilter: this.props.form.getFieldValue('orderNumberFilter'),
             payTimeStart: payTimeStart,
-            payTimeEnd: payTimeEnd
+            payTimeEnd: payTimeEnd,
+            staffId:this.props.form.getFieldValue('staff'),
+            payEntry:this.props.form.getFieldValue('payWayFilter')
         };
     };
 
     render() {
         const {getFieldDecorator} = this.props.form;
-
         const {
             orderData,
             total,
             pageSize,
             pageNo,
-            numberData
+            numberData,
+            dataSourceStaff
         } = this.state;
 
         const columns = [
@@ -279,6 +314,30 @@ class ConsumerOrders extends Component {
                                         <Option value={8}>部分退款</Option>
                                         <Option value={16}>全额退款</Option>
                                         <Option value={32}>已关闭</Option>
+                                    </Select>
+                                )}
+                            </FormItem>
+                            <FormItem label="支付方式：">
+                                {getFieldDecorator('payWayFilter')(
+                                    <Select placeholder="请选择">
+                                        <Option value={null}>全部</Option>
+                                        <Option value={0}>微信支付</Option>
+                                        <Option value={1}>支付宝</Option>
+                                        <Option value={6}>会员卡</Option>
+                                    </Select>
+                                )}
+                            </FormItem>
+                            <FormItem label="加油员：">
+                                {getFieldDecorator('staff')(
+                                    <Select placeholder="请选择">
+                                        <Option value={null}>全部</Option>
+                                        {
+                                            dataSourceStaff.map((item) => {
+                                                return (
+                                                    <Option key={item.id} value={item.id}>{item.realname}</Option>
+                                                )
+                                            })
+                                        }
                                     </Select>
                                 )}
                             </FormItem>

@@ -178,9 +178,9 @@ class OilManage extends Component {
                 return oil.skus.map((sku, index) => {
                     let data = {
                         name: sku.skuName,
-                        typeText: sku.proId == 1 ? '汽' : '柴',
+                        typeText: sku.proName == "汽油" ? '汽' : '柴',
                         text: oil.name,
-                        amount: sku.price,
+                        amount: Number(sku.price).toFixed(2),
                         leftText:"编辑",
                         rightText:"删除",
                     }

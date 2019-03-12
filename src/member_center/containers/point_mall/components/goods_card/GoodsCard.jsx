@@ -99,10 +99,15 @@ class GoodesCard extends React.Component {
 
         return (
             <div className={goodsCardClass}>
-                <Card
+              {/*  <Card
                     onClick={this.onShowDetail}
                     hoverable
                     cover={<img style={{height: 149}} alt="example" src={imageUrls} />}
+                >*/}
+                <Card
+                    onClick={this.onShowDetail}
+                    hoverable
+                    cover={<div className="card-back-point" style={{backgroundImage:'url('+imageUrls+')'}}></div>}
                 >
                     <div className="goods-card-title">{name}</div>
                     <div className="goods-card-time-wrap">

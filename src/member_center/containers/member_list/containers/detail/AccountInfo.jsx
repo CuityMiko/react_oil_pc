@@ -375,10 +375,22 @@ class AccountInfoContainer extends Component {
                 dataIndex: 'amount',
                 key: 'amount',
                 render: (text, record, index) => {
-                    if (text) {
-                        return '￥' + text;
+                    if (text!=undefined) {
+                        if(record.tradeType==1){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==2){
+                            return '-￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==3){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==4){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==7){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else{
+                            return '￥' + Number(text).toFixed(2);
+                        }
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             },
@@ -388,9 +400,9 @@ class AccountInfoContainer extends Component {
                 key: 'giftAmount',
                 render: (text, record, index) => {
                     if (text) {
-                        return '￥' + text;
+                        return '￥' + Number(text).toFixed(2);
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             }
@@ -536,10 +548,22 @@ class AccountInfoContainer extends Component {
                 dataIndex: 'amount',
                 key: 'amount',
                 render: (text, record, index) => {
-                    if (text) {
-                        return '￥' + text;
+                    if (text!=undefined) {
+                        if(record.tradeType==1){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==2){
+                            return '-￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==3){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==4){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==7){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else{
+                            return '￥' + Number(text).toFixed(2);
+                        }
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             },
@@ -549,9 +573,9 @@ class AccountInfoContainer extends Component {
                 key: 'giftAmount',
                 render: (text, record, index) => {
                     if (text) {
-                        return '￥' + text;
+                        return '￥' + Number(text).toFixed(2);
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             }
@@ -656,10 +680,22 @@ class AccountInfoContainer extends Component {
                 dataIndex: 'amount',
                 key: 'amount',
                 render: (text, record, index) => {
-                    if (text) {
-                        return '￥' + text;
+                    if (text!=undefined) {
+                        if(record.tradeType==1){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==2){
+                            return '-￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==3){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==4){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else if(record.tradeType==7){
+                            return '+￥' + Number(text).toFixed(2);
+                        }else{
+                            return '￥' + Number(text).toFixed(2);
+                        }
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             },
@@ -669,9 +705,9 @@ class AccountInfoContainer extends Component {
                 key: 'giftAmount',
                 render: (text, record, index) => {
                     if (text) {
-                        return '￥' + text;
+                        return '￥' + Number(text).toFixed(2);
                     } else {
-                        return '0';
+                        return '￥0.00';
                     }
                 }
             }

@@ -43,7 +43,7 @@ class MemberImportHelper extends Component {
                 <WingBlank size="l-3xl">
                     <WhiteSpace size="v-xl" />
                        <div>
-                           <p class="step-1-p">
+                           <p className="step-1-p">
                                1.登录爱加油后台管理系统 - 会员中心 - 会员列表，点击左上角“导入”功能（会员列表）
                            </p>
                            <img src={stepImg1} alt=""/>

@@ -336,9 +336,9 @@ class WorkEnd extends Component {
                         key: 'realPay',
                         render: (text) => {
                             if(text != null) {
-                                return '￥' + Number(text).toFixed(2)
+                                return Number(text).toFixed(2)
                             } else {
-                                return '￥0.00'
+                                return '0.00'
                             }
                         }
                     },
@@ -348,9 +348,9 @@ class WorkEnd extends Component {
                         key: 'discountAmount',
                         render: (text) => {
                             if(text != null) {
-                                return '￥' + Number(text).toFixed(2)
+                                return Number(text).toFixed(2)
                             } else {
-                                return '￥0.00'
+                                return '0.00'
                             }
                         }
                     }
@@ -365,9 +365,9 @@ class WorkEnd extends Component {
                         key: 'rechargeAmount',
                         render: (text) => {
                             if(text != null) {
-                                return '￥' + Number(text).toFixed(2)
+                                return Number(text).toFixed(2)
                             } else {
-                                return '￥0.00'
+                                return '0.00'
                             }
                         }
                     },
@@ -377,9 +377,9 @@ class WorkEnd extends Component {
                         key: 'giftAmount',
                         render: (text) => {
                             if(text != null) {
-                                return '￥' + Number(text).toFixed(2)
+                                return Number(text).toFixed(2)
                             } else {
-                                return '￥0.00'
+                                return '0.00'
                             }
                         }
                     }

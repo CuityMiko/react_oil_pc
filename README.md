@@ -66,6 +66,11 @@ oilStation-manage-frontend system solution
 --- .eslintrc                               ---自定义eslint配置文件，包括增加的react jsx语法限制
 --- package.json                            ---依赖库配置文件
 ```
+
+### 规范
+#### 编辑器规范约束
+- 1.使用.editorconfig配置文件  
+
 ### 安装运行
 ##### 1.下载或克隆项目源码
 ```

@@ -87,7 +87,7 @@ class operatorForm extends Component {
                         rules: realnameRule,
                         initialValue: this.props.formData ? this.props.formData.realname : null
                     })(
-                        <Input placeholder="请输入姓名" />
+                        <Input autoComplete="off" placeholder="请输入姓名" />
                     )}
                 </FormItem>
                 <FormItem
@@ -122,7 +122,7 @@ class operatorForm extends Component {
                         rules: mobilePhoneRule,
                         initialValue: this.props.formData ? this.props.formData.mobilePhone : null
                     })(
-                        <Input type="number" placeholder="请输入手机号" />
+                        <Input autoComplete="off" type="number" placeholder="请输入手机号" />
                     )}
                 </FormItem>
                 <Col span={20} offset={2}>
@@ -134,7 +134,10 @@ class operatorForm extends Component {
                     {getFieldDecorator('password', {
                         rules: passwordRule,
                     })(
-                        <Input type="password" placeholder="6-12位密码，区分大小写" />
+                        <Input autoComplete="new-password" style={{'backgroundColor': '#FFFFFF !important'}}
+                               readonly onfocus="this.removeAttribute('readonly');"
+                               onblur="this.setAttribute('readonly',true);" type="password"
+                               placeholder="6-12位密码，区分大小写" />
                     )}
                 </FormItem>
                 <FormItem {...formItemLayout}

@@ -57,6 +57,8 @@ const codeList = function (data) {
                 };
                 dataSource.push(dataSourceItem);
             })
+            // 倒序排序
+            dataSource = dataSource.sort((x, y) => y.id - x.id);
         }
         deferred.resolve(dataInfo);
     }).catch(err => {

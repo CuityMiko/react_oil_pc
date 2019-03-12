@@ -57,7 +57,6 @@ class DetailPointActivity extends React.Component {
                 id,
                 status
             } = res;
-            console.log('111')
             let data = new Map();
             let timeStr = moment(startTime).format("YYYY.MM.DD") + ' - ' + moment(endTime).format("YYYY.MM.DD");
             console.log(timeStr,'timeStr', data)
@@ -65,7 +64,7 @@ class DetailPointActivity extends React.Component {
             data.set('兑换说明', desc);
             data.set('兑换所需积分', score);
             data.set('商品名称', goodsName);
-            data.set('商品价格', price);
+            data.set('商品价格', price?'￥'+Number(price).toFixed(2):'￥0.00');
             let imgUrl = imageUrls ? imageUrls[0] : '';
             data.set('商品图片', imgUrl);
             data.set('商品库存', count);

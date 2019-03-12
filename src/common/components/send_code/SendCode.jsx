@@ -69,7 +69,7 @@ class SendCode extends React.Component {
                                 { max: 6, message: '请输入正确验证码!' }
                             ],
                         })(
-                            <Input onPressEnter={formSubmit} prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="text" placeholder="请输入验证码" maxLength={6}/>
+                            <Input onPressEnter={formSubmit} prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="text" placeholder="请输入验证码" maxLength={4}/>
                         )}
                     </FormItem>
                 </Col>

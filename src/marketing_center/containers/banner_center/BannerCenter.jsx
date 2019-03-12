@@ -14,6 +14,8 @@ import WhiteSpace from '@/common/components/white_space/WhiteSpace';
 
 import BannerCenterService from '@/marketing_center/services/banner_center/banner_center.service';
 
+import noticeBack from '@/marketing_center/assets/images/notice-core.png';
+
 import './banner_center.less';
 
 const FormItem = Form.Item;
@@ -163,10 +165,10 @@ class BannerCenter extends Component {
             }
         };
         return (
-            <div className="base-edit">
+            <div className="base-edit-notice">
                 <div className="content">
                 <Row gutter={16}>
-                    <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
+                  {/*  <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
                         <div className="scrollable-container" ref={(node) => { this.container = node; }}>
                             <div>
                                 <div className="exhibition">
@@ -178,9 +180,19 @@ class BannerCenter extends Component {
                                 </div>
                             </div>
                         </div>
+                    </Col>*/}
+                    <Col xs={24} md={8}>
+                        <Panel title={
+                            <div>轮播示例
+                                <span>(图中数据仅为示例)</span>
+                            </div>}
+                        >
+                            <img src={noticeBack} style={{width: `100%`}} />
+                        </Panel>
                     </Col>
-                    <Col md={16} xs={24} className={responsive.data.isMobile?'mobile-set common-mbr-set':'computer-set common-mbr-set'}>
-                        <div className={isMobile ? 'mobile-set-style common-set' : 'computer-set-style common-set'}
+                    {/*<Col md={16} xs={24} className={responsive.data.isMobile?'mobile-set common-mbr-set':'computer-set common-mbr-set'}>*/}
+                   <Col md={16} xs={24}>
+                    <div className={isMobile ? 'mobile-set-style common-set' : 'computer-set-style common-set'}
                              style={styleMobile.h5Width}>
                             <Form onSubmit={this.save}>
                                 <Panel panelHeader={true} panelFooter={false} title="轮播设置">

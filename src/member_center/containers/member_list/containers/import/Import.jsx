@@ -279,7 +279,6 @@ class MemberImport extends Component {
             },
         ];
         const {contactName,contactMobile,total, pageSize, pageNo,dataSource,finishedTotal} = this.state;
-        console.log(finishedTotal,'finishedTotal-render')
         return (
             <div className="mbr-list-container import-container">
                 <WingBlank size="l-3xl">

@@ -15,6 +15,7 @@ import H5Link from './components/H5Link';
 
 import h5Back from '@/member_center/assets/images/h5-preview.png';
 import maskBack from '@/member_center/assets/images/h5-user-back.png';
+import defaultLogo from '@/member_center/assets/images/default-logo.png';
 
 import MemberCardService from '@/member_center/services/member_card_setting/member_card_setting.service';
 import OilstationInfoService from '@/oiltation_manage/services/oiltation_information/oiltation_information.service';
@@ -196,9 +197,9 @@ class MemberCardDetail extends Component {
             </Row>
         );
         return (
-            <div className="base-edit base-detail">
+            <div className="base-edit base-detail mbr-card-container">
                 <Row gutter={16}>
-                    <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'} type="flex" align="middle" justify="center">
+                    <Col md={8} xs={24} style={{width:'375px'}} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'} type="flex" align="middle" justify="center">
                         <div className="scrollable-container" ref={(node) => { this.container = node; }}>
                             {/*<Affix offsetTop={0} target={() => this.container}>*/}
                                 <div>
@@ -241,7 +242,7 @@ class MemberCardDetail extends Component {
                                 <Col md={24} xs={24} type="flex" align="middle" justify="start" className="row-col-container">
                                     <FormItem {...formItemLayout} label="油站logo:" className="upload-img-container-logo">
                                         {getFieldDecorator('mbrLogo')(
-                                            <img src={merchantLogoPreview} className="gas-logo-show" alt=""/>
+                                            <img src={merchantLogoPreview?merchantLogoPreview:defaultLogo} className="gas-logo-show" alt=""/>
                                         )}
                                         <span className="gas-logo">
                                            如需修改，请前往<Link to='/main/oiltation_manage/oiltation_information_edit'>加油站信息</Link>更新，更新后将同步获取

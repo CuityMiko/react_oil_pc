@@ -16,6 +16,8 @@ import afterPaymentExample from '@/marketing_center/assets/images/after-payment-
 
 import {receiveData} from '@/base/redux/actions';
 
+import './after_payment.less';
+
 class AfterPayment extends Component {
     state = {
         title: '支付后营销',
@@ -86,7 +88,7 @@ class AfterPayment extends Component {
         const {history} = this.props;
 
         return (
-            <div>
+            <div className="after-pay-container">
                 <Row gutter={16}>
                     <Col xs={24} md={8}>
                         <Panel title={

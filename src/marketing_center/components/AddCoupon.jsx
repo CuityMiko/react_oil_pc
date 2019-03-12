@@ -229,7 +229,6 @@ class AddCoupon extends Component {
     initBreadcrum = () => {
         // 获取组件识别所需参数
         const dataParam = this.getParamsValue();
-        // console.log(dataParam,'00-0--00')
         const {receiveData} = this.props;
         const breadcrumbdata = {
             title: '新增代金券',
@@ -504,7 +503,6 @@ class AddCoupon extends Component {
         const dataParam = this.getParamsValue();
         // this.props.form.clearValidate();
         this.props.form.validateFields((err, values) => {
-
             // 将form表单中的支付限制数组形式更改为逗号拼接的字符串形式
             var payLimit="";
             if(values.payWayLimit && values.payWayLimit.length>0){
@@ -517,12 +515,22 @@ class AddCoupon extends Component {
                 values.suitedOil.map(v => {
                     let _data = dataOil.find(c => c.id == v);
                     if (_data != null) {
-                        _result += _data.goodsIdNames.map(c=>c.skuId).join(',') + ',';
+                        if(_data.goodsIdNames!=null){
+                            if(_data.goodsIdNames.length>0){
+                                _result += _data.goodsIdNames.map(c=>c.skuId).join(',') + ',';
+                            }
+                        }
                     } else {
                         _result += v + ',';
                     }
                 });
-                suitedOil = _result.substring(0, _result.lastIndexOf(','));
+                if(_result && _result.length>0){
+                    suitedOil = _result.substring(0, _result.lastIndexOf(','));
+                }
+                if(_result && _result.length==0){
+                    message.warning("油品不能为空");
+                    return ;
+                }
             }
 
             // 卡券使用期限和投放时间比较
@@ -634,7 +642,7 @@ class AddCoupon extends Component {
                                     if(scenePutUser==2){
                                         const {dowloadUrl} = this.state;
                                         // 推广二维码url接口,却参数
-                                        CouponService.expandCoupon(res.id).then((res)=>{
+                                        CouponService.expandCoupon(res.couponNumber).then((res)=>{
                                             if(res.url){
                                                 this.setState({
                                                     // url字段需跟后台确认
@@ -659,7 +667,7 @@ class AddCoupon extends Component {
                                     if(scenePutUser==2){
                                         const {dowloadUrl} = this.state;
                                         // 推广二维码url接口,却参数
-                                        CouponService.expandCoupon(res.id).then((res)=>{
+                                        CouponService.expandCoupon(res.couponNumber).then((res)=>{
                                             if(res.url){
                                                 this.setState({
                                                     // url字段需跟后台确认
@@ -875,7 +883,6 @@ class AddCoupon extends Component {
         // 判断终端和左侧菜单栏合起-展开状态
         const {responsive, menu, LoginUserInfo,rechargeRuleType} = this.props;
         const {showDowload, dowloadUrl, codeName} = this.state;
-        // console.log(showDowload,'showDowload')
         // 获取组件识别所需参数
         const dataParam = this.getParamsValue();
         const {originData, imageUrl,usedTimeDaysFlag,usedTimeFixedFlag,
@@ -1073,7 +1080,7 @@ class AddCoupon extends Component {
                                             rules: [
                                                 {required: true, message: "请选择适用油品"}
                                             ],
-                                            initialValue: valueOils.length>0 ? valueOils : ''
+                                            initialValue: valueOils.length>0 ? valueOils : []
                                         })(
                                             <TreeSelect {...tProps} className="field-width-limit"/>
                                         )}
@@ -1286,8 +1293,8 @@ class AddCoupon extends Component {
                                         })(
                                             <Checkbox.Group style={{ width: '100%' }}>
                                                 <Row>
-                                                    <Col span={5}><Checkbox value="1">会员卡支付</Checkbox></Col>
-                                                    <Col span={5}><Checkbox value="2">微信支付</Checkbox></Col>
+                                                    <Col lg={5} md={7} xs={8}><Checkbox value="1">会员卡支付</Checkbox></Col>
+                                                    <Col lg={5} md={7} xs={8}><Checkbox value="2">微信支付</Checkbox></Col>
                                                 </Row>
                                             </Checkbox.Group>
                                         )}

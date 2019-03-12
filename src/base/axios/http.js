@@ -35,6 +35,7 @@ service.interceptors.response.use(
     store.dispatch(requestLoading({operate: 'close'}));
     if (response.data.errCode == '000006') { // 登录过期
       store.dispatch(LoginOutAction('loginout'));
+      sessionStorage.setItem('noLogin', '1');
       window.location.href = `${window.location.origin}#/login/index`;
     }
     return response;
@@ -42,7 +43,9 @@ service.interceptors.response.use(
   error => {
     store.dispatch(requestLoading({operate: 'close'}));
     // 提示错误信息
-    message.warn(error.message, 2)
+    if (!(error.message && error.message.indexOf('过期') > -1 && sessionStorage.getItem('noLogin'))) { // 弹出一次错误提示
+      message.warn(error.message, 2)
+    }
     return Promise.reject(error)
   }
 )

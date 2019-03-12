@@ -30,6 +30,13 @@ class StoreRuleOperate extends React.Component {
         couponName: ''
     }
 
+    componentWillReceiveProps() {
+        const {storerule} = this.props;
+        if (storerule != null) {
+            this.discountMap.set(storerule.storediscount, storerule.storediscountval);
+        }
+    }
+
     currenthandleOk = () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {

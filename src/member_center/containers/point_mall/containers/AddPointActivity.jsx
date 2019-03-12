@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WrappedAddOrEditPointActivityForm
-    from "../components/add_or_edit_point_activity_form/AddOrEditPointActivityForm";
-import {message} from "antd/lib/index";
+import WrappedAddOrEditPointActivityForm from "@/member_center/containers/point_mall/components/add_or_edit_point_activity_form/AddOrEditPointActivityForm";
+import {connect} from 'react-redux';
+import { receiveData } from '@/base/redux/actions';
 
 class AddPointActivity extends React.Component {
     static propTypes = {
@@ -11,6 +11,20 @@ class AddPointActivity extends React.Component {
 
     state = {
         title: '新增活动'
+    }
+
+    componentWillMount() {
+        // 初始化面包屑
+        const {receiveData} = this.props;
+        const breadcrumbdata = {
+            title: '新增商品',
+            routes: [
+                {title: '会员中心'},
+                {title: '积分商城', path: '/main/member_center/point_mall'},
+                {title: '新增商品'}
+            ]
+        }
+        receiveData(breadcrumbdata, 'breadcrumb')
     }
 
     render() {
@@ -26,4 +40,4 @@ class AddPointActivity extends React.Component {
     }
 }
 
-export default AddPointActivity;
+export default connect(state => ({}), {receiveData})(AddPointActivity);

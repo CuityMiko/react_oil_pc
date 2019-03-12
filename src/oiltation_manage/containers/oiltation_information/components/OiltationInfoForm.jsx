@@ -35,16 +35,20 @@ class OiltationInfoForm extends Component {
 
     componentWillMount() {
         oiltationInformationService.merchantGetInfo().then(res => {
-            console.log(res, 'res');
             let _provinceCityIds = [];
             _provinceCityIds.push(res.provinceId);
             _provinceCityIds.push(res.cityId);
+            if(res.latitude==null || res.latitude == undefined || res.latitude === ''){
+                res.latitude = ''
+            }
+            if(res.longitude==null || res.longitude == undefined || res.longitude === ''){
+                res.longitude = ''
+            }
             this.setState({
                 formData: res,
                 headimgUrl: res.logoUrl || '',
                 provinceCityIds: _provinceCityIds
             })
-            // console.log(this.state.formData.cityMergerName.split(','), 'city');
         }).catch(err => {
             console.log(err)
         })
@@ -92,9 +96,7 @@ class OiltationInfoForm extends Component {
 
     //省市选择
     onChange = (value, data) => {
-        console.log(value, data);
         let _label = data[0].label + data[1].label;
-        console.log(_label)
         this.setState({
             provinceId: value[0],
             cityId: value[1],
@@ -115,7 +117,6 @@ class OiltationInfoForm extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         const {headimgUrl, formData, provinceCityIds, addressPrefix} = this.state;
-
         const formItemLayout = {
             labelCol: {
                 xs: {span: 24},
@@ -128,7 +129,6 @@ class OiltationInfoForm extends Component {
                 md: {span: 10},
             },
         };
-
         //按钮位置
         const formTailLayout = {
             wrapperCol: {
@@ -164,7 +164,7 @@ class OiltationInfoForm extends Component {
                     )}
                 </FormItem>
                 <FormItem>
-                     <AppMap maptype="write" title="详细地址" clickMarker={this.clickMarker} form={this.props.form} />
+                     <AppMap maptype="write" title="详细地址" clickMarker={this.clickMarker} form={this.props.form} lnglat={[formData && formData.longitude ? formData.longitude : 0, formData && formData.latitude ? formData.latitude : 0]} address={formData && formData.address ? formData.address : ''}/>
                 </FormItem>
                 <FormItem {...formTailLayout}>
                     <Button type="primary" htmlType="submit">

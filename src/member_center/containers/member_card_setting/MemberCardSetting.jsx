@@ -15,6 +15,7 @@ import AddCoupon from '@/marketing_center/components/AddCoupon';
 
 import h5Back from '@/member_center/assets/images/h5-preview.png';
 import maskBack from '@/member_center/assets/images/h5-user-back.png';
+import defaultLogo from '@/member_center/assets/images/default-logo.png';
 
 import MemberCardService from '@/member_center/services/member_card_setting/member_card_setting.service';
 import OilstationInfoService from '@/oiltation_manage/services/oiltation_information/oiltation_information.service';
@@ -126,27 +127,36 @@ class MemberCardSetting extends Component {
     onChangeGifts = (checkedValues)=>{
         // e是多选框选中的情况，数组形式
         const {detailData} = this.state;
-        if(checkedValues.length==2){}else if(checkedValues.length==1){
+        if(checkedValues.length==2){
+        }else if(checkedValues.length==1){
             if(checkedValues[0]!=1){
                 this.setState({
-                    // giftsScore: '',
-                    giftsScore:detailData.giftScore?detailData.giftScore:'',
+                    giftsScore: '',
+                    // giftsScore:detailData.giftScore?detailData.giftScore:'',
                     giftScoreFlag:false
                 });
                 this.props.form.setFieldsValue({
-                    // giftsScore: '',
-                    giftsScore:detailData.giftScore?detailData.giftScore:'',
+                    giftsScore: '',
+                    // giftsScore:detailData.giftScore?detailData.giftScore:'',
                 });
+            }
+            if(checkedValues[0]!=2){
+                this.setState({
+                    giftCouponFlag:false,
+                    addCouponFlag:false
+                })
             }
         }else{
             this.setState({
-                // giftsScore: '',
-                giftsScore:detailData.giftScore?detailData.giftScore:'',
-                giftScoreFlag:false
+                giftsScore: '',
+                // giftsScore:detailData.giftScore?detailData.giftScore:'',
+                giftScoreFlag:false,
+                giftCouponFlag:false,
+                addCouponFlag:false
             });
             this.props.form.setFieldsValue({
-                // giftsScore: '',
-                giftsScore:detailData.giftScore?detailData.giftScore:'',
+                giftsScore: '',
+                // giftsScore:detailData.giftScore?detailData.giftScore:'',
             });
         }
 
@@ -526,7 +536,7 @@ class MemberCardSetting extends Component {
         return (
             <div className="base-edit">
                 <Row gutter={16}>
-                    <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
+                    <Col md={8} xs={24} style={{width:'375px'}} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
                         <div className="scrollable-container" ref={(node) => { this.container = node; }}>
                             {/*<Affix offsetTop={0} target={() => this.container}>*/}
                             <div>
@@ -581,7 +591,7 @@ class MemberCardSetting extends Component {
                                                     // rules: [{ required: true, message: '请上传油站logo!'}],
                                                     // initialValue: detailDatas.gasLogo ? detailDatas.gasLogo : null
                                                 })(
-                                                    <img src={merchantLogoPreview} className="gas-logo-show" alt=""/>
+                                                    <img src={merchantLogoPreview?merchantLogoPreview:defaultLogo} className="gas-logo-show" alt=""/>
                                                 )}
                                                 <span className="gas-logo">
                                                     如需修改，请前往<Link to='/main/oiltation_manage/oiltation_information_edit'>加油站信息</Link>更新，更新后将同步获取

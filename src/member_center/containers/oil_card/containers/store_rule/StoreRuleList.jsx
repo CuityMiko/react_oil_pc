@@ -85,13 +85,13 @@ class StoreRuleList extends React.Component {
                 let info = '';
                 switch (record.giftType) {
                     case 0: // 金额
-                        info = `送￥${record.giftContent}元`;
+                        info = `送￥${Number(record.giftContent).toFixed(2)}元`;
                         break;
                     case 1: // 积分
                         info = `送${record.giftContent}积分`;
                         break;
                     case 2: // 卡券
-                        info = `送${record.giftContentName || ''}优惠券`;
+                        info = `送${record.giftContentName || ''}`;
                         break;
                     default:
                         break;

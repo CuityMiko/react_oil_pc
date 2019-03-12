@@ -13,6 +13,8 @@ import WhiteSpace from '@/common/components/white_space/WhiteSpace';
 
 import BannerCenterService from '@/marketing_center/services/banner_center/banner_center.service';
 
+import noticeBack from '@/marketing_center/assets/images/notice-core.png';
+
 import './banner_center.less';
 
 const FormItem = Form.Item;
@@ -117,10 +119,10 @@ render() {
   );
 
   return (
-      <div className="base-edit">
+      <div className="base-edit-notice">
           <div className="content">
               <Row gutter={16}>
-                  <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
+                {/*  <Col md={8} xs={24} className={responsive.data.isMobile?'mobile-preview common-mbr-preview':'computer-preview common-mbr-preview'}>
                       <div className="scrollable-container" ref={(node) => { this.container = node; }}>
                           <div>
                               <div className="exhibition">
@@ -133,7 +135,143 @@ render() {
                           </div>
                       </div>
                   </Col>
-                  <Col md={16} xs={24} className={responsive.data.isMobile?'mobile-set common-mbr-set':'computer-set common-mbr-set'}>
+                      <Col md={16} xs={24} className={responsive.data.isMobile?'mobile-set common-mbr-set':'computer-set common-mbr-set'}>
+                      <div className={isMobile?'mobile-set-style common-set':'computer-set-style common-set'} style={styleMobile.h5Width}>
+                          <Form onSubmit={this.save}>
+                              {
+                                  detailData.status==1 && (
+                                      <Panel panelHeader={true} panelFooter={false} title="轮播设置" headerBtnHtml={headerBtnHtmlEnd}>
+                                          <WhiteSpace size="v-xl" />
+                                          <div className="set-tip">
+                                              <Icon type="exclamation-circle" />
+                                              <span>如通知示例所示，蓝色区域为显示位置，可通过配置外部链接点击跳转</span>
+                                          </div>
+                                          <WhiteSpace size="v-lg" />
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播状态:" className={detailData.status==1?'status-style':''}>
+                                                  {getFieldDecorator('status', {
+                                                  })(
+                                                      <div>{detailData.status?detailData.status==0?'未开始':detailData.status==1?'进行中':detailData.status==2?'已结束':'--':'未开始'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播标题:">
+                                                  {getFieldDecorator('title',{
+                                                  })(
+                                                      <div>{detailData.title?detailData.title:'--'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播时间:">
+                                                  {getFieldDecorator('time', {
+                                                  })(
+                                                      <div>{(detailData.startTime && detailData.endTime) ?
+                                                          ((moment(Number(detailData.startTime)).format('YYYY.MM.DD')) +
+                                                              '-'+ (moment(Number(detailData.endTime)).format('YYYY.MM.DD'))):'--'}
+                                                      </div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="内容:">
+                                                  {getFieldDecorator('contentText', {
+                                                  })(
+                                                      <div dangerouslySetInnerHTML={{__html: detailData.content?detailData.content:'--'}}></div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label={formOptionalLabel.outLinkLabel}>
+                                                  {getFieldDecorator('outLink', {
+                                                  })(
+                                                      <div>{detailData.url?detailData.url:'--'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+                                      </Panel>
+                                  )
+                              }
+
+                              {
+                                  detailData.status!=1 && (
+                                      <Panel panelHeader={true} panelFooter={false} title="轮播设置" headerBtnHtml={headerBtnHtmlEdit}>
+                                          <WhiteSpace size="v-xl" />
+                                          <div className="set-tip">
+                                              <Icon type="exclamation-circle" />
+                                              <span>如通知示例所示，蓝色区域为显示位置，可通过配置外部链接点击跳转</span>
+                                          </div>
+                                          <WhiteSpace size="v-lg" />
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播状态:" className={detailData.status==1?'status-style':''}>
+                                                  {getFieldDecorator('status', {
+                                                  })(
+                                                      <div>{detailData.status?detailData.status==0?'未开始':detailData.status==1?'进行中':detailData.status==2?'已结束':'--':'未开始'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播标题:">
+                                                  {getFieldDecorator('title',{
+                                                  })(
+                                                      <div>{detailData.title?detailData.title:'--'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="轮播时间:">
+                                                  {getFieldDecorator('time', {
+                                                  })(
+                                                      <div>
+                                                          {(detailData.startTime && detailData.endTime) ?
+                                                              ((moment(Number(detailData.startTime)).format('YYYY.MM.DD')) +
+                                                                  '-'+ (moment(Number(detailData.endTime)).format('YYYY.MM.DD'))):'--'}
+                                                      </div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label="内容:">
+                                                  {getFieldDecorator('contentText', {
+                                                  })(
+                                                      <div dangerouslySetInnerHTML={{__html: detailData.content?detailData.content:'--'}}></div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+
+                                          <div className="row-col-container">
+                                              <FormItem {...formItemLayout} label={formOptionalLabel.outLinkLabel}>
+                                                  {getFieldDecorator('outLink', {
+                                                  })(
+                                                      <div>{detailData.url?detailData.url:'--'}</div>
+                                                  )}
+                                              </FormItem>
+                                          </div>
+                                      </Panel>
+                                  )
+                              }
+                          </Form>
+                      </div>
+                  </Col>
+                  */}
+                  <Col xs={24} md={8}>
+                      <Panel title={
+                          <div>轮播示例
+                              <span>(图中数据仅为示例)</span>
+                          </div>}
+                      >
+                          <img src={noticeBack} style={{width: `100%`}} />
+                      </Panel>
+                  </Col>
+                  <Col md={16} xs={24}>
                       <div className={isMobile?'mobile-set-style common-set':'computer-set-style common-set'} style={styleMobile.h5Width}>
                           <Form onSubmit={this.save}>
                               {

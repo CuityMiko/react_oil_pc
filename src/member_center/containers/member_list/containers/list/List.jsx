@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { Form, Input,Modal, Row,message, Col, Button, Table, Divider } from 'antd';
+import { Form, Input,Modal, Row,message, Col, Button, Table, Divider,Tooltip,Icon } from 'antd';
 import PropsType from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -54,18 +54,21 @@ class MemberList extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.form.getFieldValue('mobile'),'ddd')
         // 列表接口
         const {pageNo, pageSize} = this.state;
-        this.listData(pageNo, pageSize);
+        const mobile = this.props.form.getFieldValue('mobile');
+        this.listData(pageNo, pageSize,mobile?mobile:'');
         this.countMbrData(this.state.icons);
     }
     // 页码改变后的回调函数
     onChange = (page) => {
         const {pageSize} = this.state;
+        const mobile = this.props.form.getFieldValue('mobile');
         this.setState({
             pageNo: page
         });
-        this.listData(page,pageSize,this.props.form.getFieldValue('mobile'));
+        this.listData(page,pageSize,mobile?mobile:'');
     };
     // 列表请求接口
     listData = (pageNo,pageSize,mobile)=>{
@@ -97,11 +100,12 @@ class MemberList extends Component {
     };
     // 表单查询函数
     search = ()=>{
+        const mobile = this.props.form.getFieldValue('mobile');
         this.setState({
             pageNo:1
         })
         const {pageNo, pageSize} = this.state;
-        this.listData(1,pageSize,this.props.form.getFieldValue('mobile'))
+        this.listData(1,pageSize,mobile?mobile:'');
     };
 
     // 表单重置函数
@@ -142,6 +146,7 @@ class MemberList extends Component {
     del = (memberId) => {
         let _self = this;
         const {pageNo, pageSize} = _self.state;
+        const mobile = _self.props.form.getFieldValue('mobile');
         Modal.confirm({
             title: '确认删除该会员吗？',
             content: '该会员的权益将被清空，请谨慎。',
@@ -154,7 +159,7 @@ class MemberList extends Component {
                     _self.setState({
                         pageNo: 1
                     });
-                    _self.listData(1,pageSize,_self.props.form.getFieldValue('mobile'))
+                    _self.listData(1,pageSize,mobile?mobile:'')
                 }).catch(
                     err => {
                         console.log('err');
@@ -186,17 +191,19 @@ class MemberList extends Component {
             visibleInventory: false,
         });
     };
-    // 弹出框关闭之后执行卡券列表服务
+    // 弹出框关闭之后执行列表服务
     afterCloseModal = () => {
         // 列表接口
         const {pageNo, pageSize} = this.state;
-        this.listData(pageNo, pageSize);
+        const mobile = this.props.form.getFieldValue('mobile');
+        this.listData(pageNo, pageSize,mobile?mobile:'');
         this.countMbrData(this.state.icons);
     };
     // 修改库存接口
     handleSubmitInventory = (e) => {
         const self = this;
         const {id,pageNo, pageSize} = self.state;
+        const mobile = self.props.form.getFieldValue('mobile');
         e.preventDefault();
         self.refs.editScoreForm.validateFields((err, values) => {
             if (!err) {
@@ -207,11 +214,11 @@ class MemberList extends Component {
                     memberId:id
                 }).then((res)=>{
                     message.success('修改积分成功');
-                    this.setState({
+                    self.setState({
                         visibleInventory: false,
                     });
                     // 列表接口
-                    self.listData(pageNo, pageSize);
+                    self.listData(pageNo, pageSize,mobile?mobile:'');
                 }).catch(
                     (err) => {
                         console.log('err');
@@ -243,14 +250,14 @@ class MemberList extends Component {
                     return index + 1
                 }
             },
-            {
+         /*   {
                 title: '昵称',
                 dataIndex: 'name',
                 key: 'name',
                 render:(text, record, index) => {
                     return text || '--'
                 }
-            },
+            },*/
             {
                 title: '手机号',
                 dataIndex: 'mobile',
@@ -266,7 +273,7 @@ class MemberList extends Component {
                 render:(text,record)=>{
                     if(text ==0){
                         return '女'
-                    }else if(text ==1){
+                    }else if(text ==1 || text == 2){
                         return '男'
                     }else{
                         return '--'
@@ -282,6 +289,26 @@ class MemberList extends Component {
                         return moment(Number(text)).format('YYYY.MM.DD')
                     }else{
                         return '--'
+                    }
+                }
+            },
+            {
+                title: () => {
+                    return (
+                        <div>可用余额
+                            <Tooltip title="可用余额为汽油卡余额和柴油卡余额的总和">
+                                <Icon style={{color: '#1890ff', marginLeft: '4px'}} type="exclamation-circle" />
+                            </Tooltip>
+                        </div>
+                    )
+                },
+                dataIndex: 'totalBalance',
+                key: 'totalBalance',
+                render: (text) => {
+                    if(text != null) {
+                        return '￥' + Number(text).toFixed(2)
+                    } else {
+                        return '￥0.00'
                     }
                 }
             },

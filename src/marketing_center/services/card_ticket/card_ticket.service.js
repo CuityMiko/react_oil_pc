@@ -52,7 +52,7 @@ const couponList = function (data,couponCardBack,funcs) {
         dataCouponInfo.total = res.total;
         if(res.items && res.items.length>0){
             res.items.map((item,index)=>{
-                // couponStatus-0未开始-1进行中-(-1)已结束 promoteType-1卡券广场-2二维码广场
+                // couponStatus-0未开始-1进行中-(-1)已结束 promoteType-1卡券广场-2二维码推广
                 // dataOperations-不同广场及状态下的操作项数组
                 if(item.promoteType==1){
                     if(item.couponStatus==0){
@@ -152,7 +152,7 @@ const couponList = function (data,couponCardBack,funcs) {
                 dataSourceItem = {
                     id:item.id,
                     couponNumber:item.couponNumber,
-                    putInChannel:item.promoteType?item.promoteType==1?'卡券广场':'二维码广场':'--',
+                    putInChannel:item.promoteType?item.promoteType==1?'卡券广场':'二维码推广':'--',
                     couponAmount:item.amount?item.amount.toFixed(2):'0',
                     couponName:item.name?item.name:'--',
                     couponTime: (item.actTimeStart && item.actTimeEnd)?(moment(item.actTimeStart).format('YYYY.MM.DD')
@@ -198,20 +198,25 @@ const detailCoupon = function (couponNumber,couponDetailScene) {
                 originData:res
             };
             // 适用油品处理
-            res.skus.map((item, index) => {
-                // 数据为null的情况不显示
-                if(item.skuName!=null){
-                    if(index==0){
-                        suitedOils = suitedOils +''+ item.skuName
-                    }else{
-                        suitedOils = suitedOils +', '+ item.skuName
-                    }
+            if(res.skus!=null){
+                if(res.skus.length>0){
+                    res.skus.map((item, index) => {
+                        // 数据为null的情况不显示
+                        if(item.skuName!=null){
+                            if(index==0){
+                                suitedOils = suitedOils +''+ item.skuName
+                            }else{
+                                suitedOils = suitedOils +', '+ item.skuName
+                            }
+                        }
+                    });
                 }
-            });
+            }
+
             if(couponDetailScene && couponDetailScene=='couponCreate'){
                 // 判断是卡券主动创建还是其他渠道的赠送卡券（这种方式有些字段不显示）
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
-                    .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
+                    .set('卡券面值',res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00')
                     .set('卡券logo',res.logo?res.logo:'--')
                     .set('卡券使用期限',res.dateType==1?'领取后'+res.fixedTerm+'天有效':res.dateType==0?
                         moment(Number(res.useTimeBegin)).format('YYYY.MM.DD')+'-'+
@@ -223,7 +228,7 @@ const detailCoupon = function (couponNumber,couponDetailScene) {
                         moment(Number(res.actTimeStart)).format('YYYY.MM.DD')+'-'+
                         moment(Number(res.actTimeEnd)).format('YYYY.MM.DD'):'--')
                     .set('卡券说明',res.remark?res.remark:'--')
-                dataCouponDetail.dataRule.set('投放渠道',res.promoteType==1?'卡券广场':res.promoteType==2?'二维码广场':'--')
+                dataCouponDetail.dataRule.set('投放渠道',res.promoteType==1?'卡券广场':res.promoteType==2?'二维码推广':'--')
                     .set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
                     .set('使用时段','不限制')
                     .set('每位用户限领',res.getLimit==99999?'不限制':res.getLimit+'张')
@@ -232,14 +237,14 @@ const detailCoupon = function (couponNumber,couponDetailScene) {
                             res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }else {
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
-                    .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
+                    .set('卡券面值',res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00')
                     .set('卡券logo',res.logo?res.logo:'--')
                     .set('卡券使用期限',res.dateType==1?'领取后'+res.fixedTerm+'天有效':res.dateType==0?
                         moment(Number(res.useTimeBegin)).format('YYYY.MM.DD')+'-'+
                         moment(Number(res.useTimeEnd)).format('YYYY.MM.DD'):'--')
                     .set('适用油品',suitedOils?suitedOils:'--')
                     .set('卡券说明',res.remark?res.remark:'--')
-                dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
+                dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':'￥'+Number(res.leastCost).toFixed(2))
                     .set('使用时段','不限制')
                     .set('支付限制',res.payLimit?res.payLimit.split(',').length==2?'会员卡支付，微信支付':
                         res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':
@@ -274,20 +279,25 @@ const detailCouponId = function (couponNumber,couponDetailScene) {
                 originData:res
             };
             // 适用油品处理
-            res.skus.map((item, index) => {
-                // 数据为null的情况不显示
-                if(item.skuName!=null){
-                    if(index==0){
-                        suitedOils = suitedOils +''+ item.skuName
-                    }else{
-                        suitedOils = suitedOils +', '+ item.skuName
-                    }
+            if(res.skus!=null){
+                if(res.skus.length>0){
+                    res.skus.map((item, index) => {
+                        // 数据为null的情况不显示
+                        if(item.skuName!=null){
+                            if(index==0){
+                                suitedOils = suitedOils +''+ item.skuName
+                            }else{
+                                suitedOils = suitedOils +', '+ item.skuName
+                            }
+                        }
+                    });
                 }
-            });
+            }
+
             if(couponDetailScene && couponDetailScene=='couponCreate'){
                 // 判断是卡券主动创建还是其他渠道的赠送卡券（这种方式有些字段不显示）
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
-                    .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
+                    .set('卡券面值',res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00')
                     .set('卡券logo',res.logo?res.logo:'--')
                     .set('卡券使用期限',res.dateType==1?'领取后'+res.fixedTerm+'天有效':res.dateType==0?
                         moment(Number(res.useTimeBegin)).format('YYYY.MM.DD')+'-'+
@@ -299,8 +309,8 @@ const detailCouponId = function (couponNumber,couponDetailScene) {
                         moment(Number(res.actTimeStart)).format('YYYY.MM.DD')+'-'+
                         moment(Number(res.actTimeEnd)).format('YYYY.MM.DD'):'--')
                     .set('卡券说明',res.remark?res.remark:'--')
-                dataCouponDetail.dataRule.set('投放渠道',res.promoteType==1?'卡券广场':res.promoteType==2?'二维码广场':'--')
-                    .set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
+                dataCouponDetail.dataRule.set('投放渠道',res.promoteType==1?'卡券广场':res.promoteType==2?'二维码推广':'--')
+                    .set('最低消费',res.leastCost==0?'不限制':'￥'+Number(res.leastCost).toFixed(2))
                     .set('使用时段','不限制')
                     .set('每位用户限领',res.getLimit==99999?'不限制':res.getLimit+'张')
                     .set('支付限制',res.payLimit? res.payLimit.split(',').length==2?'会员卡支付，微信支付':
@@ -308,14 +318,14 @@ const detailCouponId = function (couponNumber,couponDetailScene) {
                             res.payLimit.split(',')[0]==2?'微信支付':'--':'--':'--')
             }else {
                 dataCouponDetail.dataMain.set('卡券名称',res.name?res.name:'--')
-                    .set('卡券面值','￥'+res.amount?res.amount+'元':0.00+'元')
+                    .set('卡券面值',res.amount?'￥'+Number(res.amount).toFixed(2):'￥0.00')
                     .set('卡券logo',res.logo?res.logo:'--')
                     .set('卡券使用期限',res.dateType==1?'领取后'+res.fixedTerm+'天有效':res.dateType==0?
                         moment(Number(res.useTimeBegin)).format('YYYY.MM.DD')+'-'+
                         moment(Number(res.useTimeEnd)).format('YYYY.MM.DD'):'--')
                     .set('适用油品',suitedOils?suitedOils:'--')
                     .set('卡券说明',res.remark?res.remark:'--')
-                dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':res.leastCost+'元')
+                dataCouponDetail.dataRule.set('最低消费',res.leastCost==0?'不限制':'￥'+Number(res.leastCost).toFixed(2))
                     .set('使用时段','不限制')
                     .set('支付限制',res.payLimit?res.payLimit.split(',').length==2?'会员卡支付，微信支付':
                         res.payLimit.split(',').length==1?res.payLimit.split(',')[0]==1?'会员卡支付':

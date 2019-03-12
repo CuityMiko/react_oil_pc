@@ -59,56 +59,68 @@ body {
   font-family: sans-serif;
 }
 
-#root{
+#root {
   height: 100%;
 }
-.ant-layout{
+
+.ant-layout {
   height: 100%;
-  .logo{
+
+  .logo {
     height: 3rem;
     margin: 16px;
-    color:white;
+    color: white;
     font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .logo img{
+
+  .logo img {
     width: 2.4rem;
     height: 2.4rem;
   }
-  .logo span{
+
+  .logo span {
     margin-left: .3rem;
   }
-  .ant-layout-sider-collapsed{
-    .anticon{
+
+  .ant-layout-sider-collapsed {
+    .anticon {
       font-size: 16px;
       // margin-left: 8px;
     }
-    .nav-text{
+
+    .nav-text {
       display: none;
     }
-    .ant-menu-submenu-vertical > .ant-menu-submenu-title:after{
+
+    .ant-menu-submenu-vertical>.ant-menu-submenu-title:after {
       display: none;
     }
+
     .ant-menu-dark:not(.ant-menu-inline) .ant-menu-submenu-open {
       color: inherit;
     }
   }
+
   p {
     margin: 10px 0 10px 0;
   }
 }
-.gutter-example{
-  .ant-row{
+
+.gutter-example {
+  .ant-row {
+
     //margin-left: 0 !important;
     //margin-right: 0 !important;
-    >div{
+    >div {
       background: transparent;
       border: 0;
     }
   }
 }
+
 .gutter-box {
   padding: 5px 0;
 }
@@ -118,22 +130,33 @@ body {
     font-size: 14px !important;
   }
 }
+
 // 面包屑字体
-.ant-breadcrumb-link{
+.ant-breadcrumb-link {
   font-size: 14px !important;
   font-weight: @title-font-weight;
   color: @title-font-color;
 }
+
 // 滚动条宽度隐藏
-::-webkit-scrollbar { width: 0px;}
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .ant-input-group-addon {
   color: #ffffff;
   background-color: @primary-color;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
 }
+
 // 左侧菜单
 .ant-drawer-body {
   padding: 0px;
   height: 100%;
+  width: 0%;
+}
+
+.ant-drawer-left {
+  width: 0% !important;
 }

@@ -36,7 +36,9 @@ export const LoginAction = (logininfo, loginType = 'MOBILE_PWD') => {
             dispatch(resetErrorMsg())
             const loginuserinfo = result.data;
             // 将获取到的登录信息放在本地存储内
-            sessionStorage.setItem('login_userinfo', JSON.stringify(loginuserinfo))
+            sessionStorage.setItem('login_userinfo', JSON.stringify(loginuserinfo));
+            // 删除登录过期标识
+            sessionStorage.removeItem('noLogin');
             // 同步接收用户登录信息
             dispatch(receiveLoginUserInfo(loginuserinfo))
         } else {

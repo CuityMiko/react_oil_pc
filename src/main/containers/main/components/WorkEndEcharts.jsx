@@ -95,13 +95,13 @@ class WorkEndEcharts extends React.Component {
                         value = value.replace(/,/g, "");
                         value = Number(value);
                         if(value>=1000 && value<10000){
-                            value = value /1000 +'千';
+                            value = '￥'+value /1000 +'千';
                         }else if(value>=10000 && value<100000){
-                            value = value /10000 +'万';
+                            value = '￥'+value /10000 +'万';
                         }else if(value > 100000){
-                            value = value / 100000 +'千万';
+                            value = '￥'+value / 100000 +'千万';
                         }
-                        return value;
+                        return '￥'+value;
                     }
                 }
             },

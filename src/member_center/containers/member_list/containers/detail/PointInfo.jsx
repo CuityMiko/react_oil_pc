@@ -195,8 +195,26 @@ class PointInfoContainer extends Component {
                 dataIndex: 'score',
                 key: 'score',
                 render:(text, record, index) => {
-                    if(text){
-                        return text;
+                    if(text!=undefined){
+                        if(record.type == 0){
+                            return '+'+text;
+                        }else if(record.type==1){
+                            return '-'+text;
+                        }else if(record.type==2){
+                            return '+'+text;
+                        }else if(record.type==3){
+                            return '-'+text;
+                        }else if(record.type==4){
+                            return '+'+text;
+                        }else if(record.type==5){
+                            return '+'+text;
+                        }else if(record.type==6){
+                            return '-'+text;
+                        }else if(record.type==7){
+                            return '+'+text;
+                        }else{
+                            return text;
+                        }
                     }else{
                         return '0';
                     }

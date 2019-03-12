@@ -118,7 +118,9 @@ class DetailShowComplex extends Component {
             const longitude = currentValue.slice(currentValue.indexOf('+')+1,currentValue.length);
             return (
                 <Col className="value-line">
-                   <AppMap lnglat={[longitude, latitude]} maptype="read" />
+                    {
+                        longitude && latitude ? <AppMap lnglat={[longitude, latitude]} maptype="read" /> : null
+                    }
                 </Col>
             )
         }else if(currentKey=='领取赠送'){
@@ -140,7 +142,7 @@ class DetailShowComplex extends Component {
                 }
         }else{
              return (
-                <Col className="value-line">{currentValue}</Col>
+                <Col className="value-line">{currentValue?currentValue:'--'}</Col>
             )
         }
     };

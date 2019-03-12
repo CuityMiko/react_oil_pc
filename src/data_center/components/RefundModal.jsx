@@ -17,6 +17,10 @@ class RefundModal extends Component {
     // 校验金额是否大于可退金额
     checkRefundAmount = (rule, value, callback) => {
         const { returnableAmount } = this.props;
+        if(value==0){
+            rule.message = '退款金额不能为0';
+            callback('退款金额不能为0')
+        }
         if (value > returnableAmount) {
             rule.message = '不可超过可退金额';
             callback('不可超过可退金额')

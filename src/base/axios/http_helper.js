@@ -17,8 +17,10 @@ const get = function (url, params = {}, headers = {}) {
             if (res.data && res.data.success) {
                 deferred.resolve(res.data.data);
             } else {
-                const errmsg =  res.data.errMsg || '请求异常，请稍后再试!';
-                message.warning(errmsg, 2);
+                const errmsg = res.data.errMsg || '请求异常，请稍后再试!';
+                if (!(errmsg && errmsg.indexOf('过期') > -1 && sessionStorage.getItem('noLogin'))) { // 弹出一次错误提示
+                  message.warn(errmsg, 2)
+                }
                 deferred.reject(errmsg);
             }
         } catch (error) {
@@ -48,8 +50,10 @@ const post = function (url, data = {}, headers = {}) {
                 if (res.data && res.data.success) {
                     deferred.resolve(res.data.data);
                 } else {
-                    const errmsg =  res.data.errMsg || '请求异常，请稍后再试!';
-                    message.warning(errmsg, 2);
+                  const errmsg = res.data.errMsg || '请求异常，请稍后再试!';
+                  if (!(errmsg && errmsg.indexOf('过期') > -1 && sessionStorage.getItem('noLogin'))) { // 弹出一次错误提示
+                    message.warn(errmsg, 2)
+                  }
                     deferred.reject(errmsg);
                 }
             } catch (error) {

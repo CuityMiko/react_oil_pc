@@ -19,6 +19,25 @@ class EditInventory extends Component {
             PropTypes.number,
         ]),
     };
+
+    // 校验库存
+    checkAmount = (rule, value, callback) => {
+        var patt = /^[1-9][0-9]*$/;
+        if(value===''||value===undefined){
+            rule.message = '请填写库存';
+            callback('请填写库存');
+        }
+        if(value==0){
+            rule.message = '库存不能为0';
+            callback('库存不能为0');
+        }
+        if(!patt.test(value)){
+            rule.message = '格式不正确';
+            callback('格式不正确');
+        }
+        callback();
+    };
+
     render() {
         const {getFieldDecorator} = this.props.form;
         // 手机端还是电脑端
@@ -57,8 +76,9 @@ class EditInventory extends Component {
                     >
                         {getFieldDecorator('amount', {
                             rules: [
-                                {required: true, message: '请填写库存'},
-                                {pattern: /^[1-9][0-9]*$/, message: '库存格式不正确!'}
+                                // {required: true, message: '请填写库存'},
+                                // {pattern: /^[1-9][0-9]*$/, message: '库存格式不正确!'}
+                                {validator: this.checkAmount}
                             ]
                         })(
                             <Input autoComplete="off" maxLength={5} placeholder="请输入库存" />

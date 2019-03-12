@@ -18,6 +18,7 @@ class AppMap extends React.Component {
     static propTypes = {
         title: PropTypes.string,
         lnglat: PropTypes.array,
+        address: PropTypes.string,
         clickMarker: PropTypes.func,
         maptype: PropTypes.oneOf(['read', 'write'])
     }
@@ -37,19 +38,18 @@ class AppMap extends React.Component {
      * 初始化地图
      */
     initMap = () => {
-        const {maptype} = this.props;
+        const {maptype, lnglat} = this.props;
         if (maptype == 'read') {
             // 根据经纬度加载地图
-            const _dw = [120.220885, 30.206752];
             const _selmap = new window.AMap.Map('ampcontainer2', {
                 resizeEnable: true,
-                center: _dw,
+                center: lnglat,
                 zoom: 20
             });
             // Marker
             new window.AMap.Marker({
                 map: _selmap,
-                position: _dw
+                position: lnglat
             });
         } else {
             // 加载地图，调用浏览器定位服务
@@ -149,9 +149,9 @@ class AppMap extends React.Component {
                             <Row>
                                 <Col span={18}>
                                     <FormItem>
-                                        {getFieldDecorator('address',
+                                        {getFieldDecorator('address', {initialValue: this.props.address}
                                         )(
-                                            <Input placeholder={`请输入${title}`} />
+                                            <Input placeholder={`请输入${title}`}/>
                                         )}
                                     </FormItem>
                                 </Col>

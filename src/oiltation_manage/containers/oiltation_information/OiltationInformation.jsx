@@ -27,6 +27,12 @@ class OiltationInformation extends Component {
         receiveData(breadcrumbdata, 'breadcrumb')
         oiltationInformationService.merchantGetInfo().then(res => {
             let data = new Map();
+            if(res.latitude==null || res.latitude == undefined || res.latitude === ''){
+                res.latitude = ''
+            }
+            if(res.longitude==null || res.longitude == undefined || res.longitude === ''){
+                res.longitude = ''
+            }
             data.set('联系人', res.contactName);
             data.set('联系电话', res.contactMobile);
             data.set('油站logo', res.logoUrl);

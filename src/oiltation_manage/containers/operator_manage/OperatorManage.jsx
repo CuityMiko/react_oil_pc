@@ -325,11 +325,11 @@ class OperatorManage extends Component {
                                 let _enable = text == 1 ? '是' : '否';
                                 return _enable;
                             }}
-                            filterMultiple={false}
+                          /* filterMultiple={false}
                             filters={[
                                 {text: '是', value: 1},
                                 {text: '否', value: 0}
-                            ]}
+                            ]}*/
                         />
                         <Column
                             title="操作"
