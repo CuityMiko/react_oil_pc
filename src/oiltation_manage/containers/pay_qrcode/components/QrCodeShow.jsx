@@ -15,7 +15,6 @@ import {receiveData} from '@/base/redux/actions';
 import WhiteSpace from '@/common/components/white_space/WhiteSpace';
 import WingBlank from '@/common/components/wing_blank/WingBlank';
 import QrcodeDownload from '@/common/components/qrcodedownload/QrcodeDownload';
-import QrcodeDownloadImg from '@/common/components/qrcodedownloadimg/QrcodeDownloadImg';
 import QrCodeDownload from './QrCodeDownload';
 
 import './qrcode_show.less';

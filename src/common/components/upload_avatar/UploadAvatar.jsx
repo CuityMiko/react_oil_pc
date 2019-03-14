@@ -6,7 +6,14 @@ import {UploadUrl} from '@/common/services/common/common.url';
 class UploadAvatar extends React.Component {
     static propTypes = {
         headimgUrl: PropTypes.string,
-        changeAvatar: PropTypes.func
+        changeAvatar: PropTypes.func,
+        isDisabled:PropTypes.bool
+    }
+
+    //默认参数
+    static defaultProps = {
+        // 默认可以上传图片、
+        isDisabled: false
     }
 
     state = {
@@ -43,10 +50,10 @@ class UploadAvatar extends React.Component {
         const uploadButton = (
             <div>
                 <Icon type={this.state.loading ? 'loading' : 'plus'} />
-                <div className="ant-upload-text">上传头像</div>
+                <div className="ant-upload-text">点击上传</div>
             </div>
         );
-        const {headimgUrl} = this.props;
+        const {headimgUrl,isDisabled} = this.props;
         return (
             <Upload
                 name="files"
@@ -56,6 +63,7 @@ class UploadAvatar extends React.Component {
                 action={UploadUrl}
                 beforeUpload={this.beforeUpload}
                 onChange={this.handleChange}
+                disabled={isDisabled?true:false}
             >
                 {headimgUrl ? <img className="preview-avart-img" src={headimgUrl} alt="avatar" /> : uploadButton}
             </Upload>

@@ -55,6 +55,8 @@ import Panel from '@/common/components/panel/Panel';
 import {UploadUrl} from '@/common/services/common/common.url';
 import QrcodeDownload from '@/common/components/qrcodedownload/QrcodeDownload';
 
+import UploadAvatar from "@/common/components/upload_avatar/UploadAvatar";
+
 import CouponService from '@/marketing_center/services/card_ticket/card_ticket.service';
 import OilService from '@/oil_manage/services/oil_manage.service';
 
@@ -313,7 +315,7 @@ class AddCoupon extends Component {
 
     };
 
-    // 上传图片前的判断
+/*    // 上传图片前的判断
     beforeUpload = (file) => {
         const isImg = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif';
         if (!isImg) {
@@ -340,9 +342,15 @@ class AddCoupon extends Component {
                 });
             }
         }
-    };
+    };*/
     // 适用油品级联变动
     onChange = (value) => {};
+    // 上传图片组件回调
+    changeAvatar = (imgurl) => {
+        this.setState({
+            imageUrl: imgurl
+        })
+    }
 
     //过期提醒
     onChangeTip = (value)=>{};
@@ -1008,6 +1016,15 @@ class AddCoupon extends Component {
                                             rules: [{required: true, message: '请上传卡券logo'}],
                                             initialValue: imageUrl ? imageUrl : null
                                         })(
+                                            <UploadAvatar headimgUrl={imageUrl ? imageUrl : ''} changeAvatar={this.changeAvatar} />
+                                        )}
+                                    </FormItem>
+
+                                   {/* <FormItem {...formItemLayout} label="卡券logo:" className="upload-img-container-logo">
+                                        {getFieldDecorator('couponLogo', {
+                                            rules: [{required: true, message: '请上传卡券logo'}],
+                                            initialValue: imageUrl ? imageUrl : null
+                                        })(
                                             <Upload
                                                 name="files"
                                                 listType="picture-card"
@@ -1020,7 +1037,7 @@ class AddCoupon extends Component {
                                                 {imageUrl ? <img src={imageUrl} alt="avatar"/> : uploadButton}
                                             </Upload>
                                         )}
-                                    </FormItem>
+                                    </FormItem>*/}
                                 </Col>
                             </Row>
 

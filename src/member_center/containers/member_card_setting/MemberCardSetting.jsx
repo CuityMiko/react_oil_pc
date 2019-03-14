@@ -17,6 +17,8 @@ import h5Back from '@/member_center/assets/images/h5-preview.png';
 import maskBack from '@/member_center/assets/images/h5-user-back.png';
 import defaultLogo from '@/member_center/assets/images/default-logo.png';
 
+import UploadAvatar from "@/common/components/upload_avatar/UploadAvatar";
+
 import MemberCardService from '@/member_center/services/member_card_setting/member_card_setting.service';
 import OilstationInfoService from '@/oiltation_manage/services/oiltation_information/oiltation_information.service';
 
@@ -290,7 +292,7 @@ class MemberCardSetting extends Component {
             visibleEditCoupon: false,
         });
     };
-
+/*
     beforeUpload = (file) => {
         const isImg = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif';
         if (!isImg) {
@@ -318,7 +320,9 @@ class MemberCardSetting extends Component {
             }
         }
     };
+*/
 
+/*
     beforeUploadMbr = (file) => {
         const isImg = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif';
         if (!isImg) {
@@ -352,6 +356,7 @@ class MemberCardSetting extends Component {
             }
         }
     };
+*/
 
     giftScoreInput = (e)=>{
         let giftsParam = this.props.form.getFieldValue('gifts');
@@ -380,6 +385,20 @@ class MemberCardSetting extends Component {
             });
         }
     };
+
+    // 上传图片组件回调
+    changeAvatar = (imgurl) => {
+        this.setState({
+            imageUrlMbr: imgurl
+        })
+        // 判断是默认会员卡封面还是自定义
+        if(this.state.cardCoverType == 1){
+            this.setState({
+                h5BackImgUser:imgurl
+            });
+        }
+    }
+
     // 提交保存按钮，区分是新增还是编辑，点击编辑按钮时带页面参数过来用于识别
     save = (e) => {
         e.preventDefault();
@@ -617,6 +636,14 @@ class MemberCardSetting extends Component {
                                                                     rules: [{ required: cardCoverType==1?true:false, message: '请上传会员卡封面'}],
                                                                     initialValue: cardCoverType==1 ? imageUrlMbr : null
                                                                 })(
+                                                                    <UploadAvatar isDisabled={cardCoverType==0?true:false} headimgUrl={imageUrlMbr ? imageUrlMbr : ''} changeAvatar={this.changeAvatar} />
+                                                                )}
+                                                            </FormItem>
+                                                         {/*   <FormItem {...formItemLayout} label="" className="upload-img-container">
+                                                                {getFieldDecorator('userMbrBack',{
+                                                                    rules: [{ required: cardCoverType==1?true:false, message: '请上传会员卡封面'}],
+                                                                    initialValue: cardCoverType==1 ? imageUrlMbr : null
+                                                                })(
                                                                     <Upload
                                                                         name="files"
                                                                         listType="picture-card"
@@ -629,7 +656,7 @@ class MemberCardSetting extends Component {
                                                                         {imageUrlMbr ? <img src={imageUrlMbr} alt="avatar" /> : uploadButtonMbr}
                                                                     </Upload>
                                                                 )}
-                                                            </FormItem>
+                                                            </FormItem>*/}
                                                         </div>
                                                     </RadioGroup>
                                                 )}
