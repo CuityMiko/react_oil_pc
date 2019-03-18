@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Layout, notification, Icon, Spin, LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 
 import SiderCustom from '@/common/components/menu/SiderCustom';
 import HeaderCustom from '@/common/components/header/HeaderCustom';
@@ -19,9 +20,14 @@ import {Redirect} from 'react-router-dom';
 const { Content, Footer } = Layout;
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.title = '爱加油后台管理';
+    }
     state = {
         collapsed: false,
-        pathname: ''
+        pathname: '',
+        title: '爱加油后台管理'
     };
     
     componentWillMount() {
@@ -118,9 +124,18 @@ class App extends Component {
         });
     };
 
+    /**
+     * 设置文档标题
+     */
+    setTitle = ({ title }) => {
+        if (!title) return;
+        if (this.state.title === title) return;
+        this.setState({ title });
+    }
+
     render() {
         const { responsive, breadcrumb, requestLoading, LoginUserInfo } = this.props;
-        const { pathname } = this.state;
+        const { pathname, title } = this.state;
         const login_userinfo_store = sessionStorage.getItem('login_userinfo');
         if (login_userinfo_store == undefined || login_userinfo_store == null) {
             return (
@@ -128,40 +143,42 @@ class App extends Component {
             )
         }
         return (
-            <LocaleProvider locale={zh_CN}>
-                <Layout>
-                    {!responsive.data.isMobile && <SiderCustom pathname={pathname} collapsed={this.state.collapsed} menus={routes.menus} others={routes.others}/>}
-                    <Layout style={{flexDirection: 'column'}}>
-                        <Spin tip={requestLoading.title} spinning={requestLoading.operate == 'open' ? true : false}>
-                            <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={LoginUserInfo || {}} menus={routes.menus} others={routes.others}/>
-                                <Content style={{ overflow: 'initial', flex: '1 1 0' }}>
-                                    {breadcrumb && breadcrumb.data ? (<ContentHeader {...breadcrumb.data}/>) : null}
-                                    <WingBlank size="l-xl">
+            <DocumentTitle title={title}>
+                <LocaleProvider locale={zh_CN}>
+                    <Layout>
+                        {!responsive.data.isMobile && <SiderCustom pathname={pathname} collapsed={this.state.collapsed} menus={routes.menus} others={routes.others}/>}
+                        <Layout style={{flexDirection: 'column'}}>
+                            <Spin tip={requestLoading.title} spinning={requestLoading.operate == 'open' ? true : false}>
+                                <HeaderCustom toggle={this.toggle} collapsed={this.state.collapsed} user={LoginUserInfo || {}} menus={routes.menus} others={routes.others}/>
+                                    <Content style={{ overflow: 'initial', flex: '1 1 0' }}>
+                                        {breadcrumb && breadcrumb.data ? (<ContentHeader {...breadcrumb.data}/>) : null}
+                                        <WingBlank size="l-xl">
+                                            <WhiteSpace size="v-lg" />
+                                            <Routers LoginUserInfo={LoginUserInfo} onRouterChange={this.setTitle}/>
+                                        </WingBlank>
                                         <WhiteSpace size="v-lg" />
-                                        <Routers LoginUserInfo={LoginUserInfo}/>
-                                    </WingBlank>
-                                    <WhiteSpace size="v-lg" />
-                                </Content>
-                            {/* <Footer style={{ textAlign: 'center' }}>
-                            oilStation-manage-frontend ©{new Date().getFullYear()} Created by CJ-FE
-                            </Footer> */}
-                        </Spin>
-                    </Layout>
+                                    </Content>
+                                {/* <Footer style={{ textAlign: 'center' }}>
+                                oilStation-manage-frontend ©{new Date().getFullYear()} Created by CJ-FE
+                                </Footer> */}
+                            </Spin>
+                        </Layout>
 
-                    {
-                        // 手机端对滚动很慢的处理
-                        responsive.data.isMobile && (
-                            <style>
-                            {`
-                                #root{
-                                    height: auto;
-                                }
-                            `}
-                            </style>
-                        )
-                    }
-                </Layout>
-            </LocaleProvider>
+                        {
+                            // 手机端对滚动很慢的处理
+                            responsive.data.isMobile && (
+                                <style>
+                                {`
+                                    #root{
+                                        height: auto;
+                                    }
+                                `}
+                                </style>
+                            )
+                        }
+                    </Layout>
+                </LocaleProvider>
+            </DocumentTitle>
         );
     }
 }

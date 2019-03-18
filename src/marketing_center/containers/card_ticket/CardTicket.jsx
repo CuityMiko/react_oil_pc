@@ -333,6 +333,15 @@ class CardTicket extends Component {
             return ''
         }
     };
+
+    // 二维码推广关闭之后state状态值置为false
+    afterCloseLink = ()=>{
+        var _self = this;
+        _self.setState({
+            showDowload: false,
+        })
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         const {couponName,id,total,pageSize,url,showDowload, dowloadUrl, codeName} = this.state;
@@ -423,7 +432,7 @@ class CardTicket extends Component {
                 </Modal>
 
                 {/*下载二维码*/}
-                <QrcodeDownload isShow={showDowload} url={dowloadUrl} name={codeName}></QrcodeDownload>
+                <QrcodeDownload isShow={showDowload} url={dowloadUrl} name={codeName} afterClose={this.afterCloseLink}></QrcodeDownload>
 
             </div>
         )
